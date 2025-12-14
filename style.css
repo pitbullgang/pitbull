@@ -29,19 +29,17 @@ html, body {
   font-family: var(--font);
   color: var(--text-color);
   position: relative;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  
+  /* === NEW GIF BACKGROUND === */
+  background-color: #3d0303; /* สีสำรอง (โทนเดียวกับ GIF) */
+  background-image: url('DRAMA_FIVEM.gif'); /* ใช้ไฟล์ GIF ที่อัปโหลดแล้ว */
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed;
+  /* ========================== */
 }
 
-/* Background Image (with low opacity) */
-body::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: url("https://dekbangtlez.space/image/background.png") center/cover no-repeat;
-  opacity: 0.12;
-  z-index: 0;
-}
+/* 🚫 โค้ด body::before ที่เป็นพื้นหลังทับซ้อนถูกลบออกแล้ว */
 
 /* Light Glow Bottom */
 body::after {
@@ -115,7 +113,7 @@ body::after {
 /* Center content - shifted higher for focus */
 .center-container {
   position: absolute;
-  top: 40%;  /* 👈 เดิม 50% ปรับขึ้น */
+  top: 40%; 
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -205,3 +203,4 @@ footer {
   button { padding: 14px 28px; font-size: 1rem; }
   #circle { width: 180px; height: 180px; filter: blur(50px); }
 }
+
