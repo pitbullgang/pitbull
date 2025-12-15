@@ -22,7 +22,7 @@
       font-family:var(--font);
       color:var(--text);
       background:linear-gradient(135deg,var(--bg-start),var(--bg-end));
-      overflow-x:hidden;
+      overflow-x:hidden; /* ซ่อน scrollbar ของหน้าหลัก */
     }
 
     body::before{
@@ -83,6 +83,7 @@
       width:90%;
       max-width:1100px;
       margin:30px auto 100px;
+      overflow: hidden; /* ป้องกันไม่ให้ทะลุ container หลัก */
     }
 
     section{
@@ -103,17 +104,36 @@
     }
     .leader h2{border-color:var(--accent);}
 
+    /* ✅ แก้ไขจุดที่ 1: ปรับ .list ให้เลื่อนแนวนอน */
     .list{
       display:flex;
-      flex-wrap:wrap;
-      gap:20px;
-      justify-content:flex-start;
+      flex-wrap: nowrap; /* ห้ามขึ้นบรรทัดใหม่ */
+      overflow-x: auto;  /* ให้เลื่อนแนวนอนได้ */
+      gap: 20px;
+      padding-bottom: 20px; /* เว้นที่ให้ scrollbar */
+      justify-content: flex-start;
     }
 
+    /* ✅ เพิ่ม: แต่ง Scrollbar ให้สวยงาม */
+    .list::-webkit-scrollbar {
+      height: 8px;
+    }
+    .list::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+    .list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+    .list::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ✅ แก้ไขจุดที่ 2: ปรับ .card ไม่ให้ย่อขยายเอง */
     .card{
-      flex:1 1 calc(20% - 20px);
-      min-width:160px;
-      max-width:200px;
+      flex: 0 0 auto; /* ไม่ยืด ไม่หด ขนาดคงที่ */
+      width: 200px;   /* กำหนดความกว้างที่แน่นอน */
       background:rgba(255,255,255,0.04);
       border:1px solid rgba(255,255,255,0.08);
       border-radius:10px;
@@ -143,10 +163,14 @@
       justify-content:center;
       gap:6px;
       color:#fff;
+      white-space: nowrap; /* ป้องกันชื่อยาวเกินจนบรรทัดตก */
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .card h3 i{
       color:var(--accent);
       font-size:1.2rem;
+      flex-shrink: 0;
     }
 
     .card a{
@@ -172,8 +196,13 @@
       backdrop-filter:blur(6px);
     }
 
-    @media (max-width:900px){.card{flex:1 1 calc(33.33% - 20px);}}
-    @media (max-width:600px){.card{flex:1 1 calc(50% - 20px);}header{font-size:1.8rem;}}
+    /* Media query สำหรับมือถือ ปรับขนาดการ์ดเล็กลงนิดหน่อย */
+    @media (max-width:600px){
+        .card {
+            width: 160px;
+        }
+        header{font-size:1.8rem;}
+    }
   </style>
 </head>
 <body>
@@ -229,12 +258,10 @@
         searchInput.addEventListener("input", e => {
           const val = e.target.value.toLowerCase();
           document.querySelectorAll(".card").forEach(card => {
-            card.style.display = card.innerText.toLowerCase().includes(val) ? "" : "none";
+            card.style.display = card.innerText.toLowerCase().includes(val) ? "block" : "none"; // ต้องแก้เป็น block เพราะ flex อาจจะเพี้ยนตอนซ่อน
           });
         });
       });
   </script>
 </body>
 </html>
-
-
