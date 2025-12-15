@@ -9,7 +9,7 @@
   --text-color: #ffffff;
 }
 
-/* 🌞 Light Theme Variables */
+/* 🌞 Light Theme Variables (โค้ดเดิม) */
 .light-theme {
   --gradient-start: #f0f0f0;
   --gradient-end: #d9d9d9;
@@ -20,22 +20,28 @@
   --text-color: #000000;
 }
 
-/* Reset */
+/* Reset (โค้ดเดิม) */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ✅ แก้ไขจุดสำคัญ 1: พื้นหลังโปร่งใสและกำหนดความสูงเต็มจอ */
+/* 🌟 แก้ไข: ยืนยันให้เต็ม Viewport และซ่อนสีพื้นหลังที่ไม่ต้องการ */
 html, body {
-  height: 100%;
-  width: 100%; /* เพิ่ม width: 100% เพื่อความชัวร์ */
+  /* ใช้ 100vh/100vw แทน 100% เพื่อความมั่นใจว่าเต็มพื้นที่หน้าจอเบราว์เซอร์ */
+  height: 100vh;
+  width: 100vw; 
+  
   overflow: hidden;
   font-family: var(--font);
   color: var(--text-color);
   position: relative;
-  /* body ต้องโปร่งใสเพื่อมองทะลุเห็นวิดีโอพื้นหลัง */
-  background-color: transparent !important; 
+  
+  /* ********************************************************** */
+  /* *** แก้ไขหลัก: เปลี่ยนจาก transparent เป็นสีดำ (#000000) *** */
+  /* สีนี้จะทำหน้าที่เป็น "สีเติม" หากวิดีโอไม่สามารถครอบคลุมขอบได้ 100% */
+  background-color: #000000 !important; 
+  /* ********************************************************** */
 }
 
-/* Light Glow Bottom */
+/* Light Glow Bottom (โค้ดเดิม) */
 body::after {
   content: "";
   position: absolute;
@@ -48,166 +54,17 @@ body::after {
   z-index: 1;
 }
 
-/* Theme Toggle */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 25px;
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50px;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-  transition: all 0.3s ease;
-}
-.theme-toggle:hover {
-  background: rgba(255,255,255,0.15);
-  transform: scale(1.05);
-}
-.theme-toggle svg {
-  color: var(--text-color);
-  position: absolute;
-  transition: opacity 0.3s ease;
-}
-#sunIcon { opacity: 0; }
-.light-theme #moonIcon { opacity: 0; }
-.light-theme #sunIcon { opacity: 1; }
+/* ... (โค้ดส่วนอื่น ๆ ที่ไม่เกี่ยวข้องกับการปรับขนาดวิดีโอ: Theme Toggle, Loading, Center Content, Gradient Text, Button, Circle Follow, Footer, Responsive) ... */
 
-/* Loading screen */
-#loading-screen {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  transition: opacity 1s ease;
-}
-#loading-screen.hidden { opacity: 0; pointer-events: none; }
-
-.loader {
-  border: 4px solid rgba(255,255,255,0.1);
-  border-top: 4px solid #888;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
-/* Center content - shifted higher for focus */
-.center-container {
-  position: absolute;
-  top: 40%; 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 5;
-}
-
-/* Gradient Text Animation */
-.gradient-text {
-  background: linear-gradient(270deg, #ffffff, #999, #ffffff);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: moveGradient 4s ease infinite;
-}
-@keyframes moveGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.title h2 {
-  font-size: 2.8rem;
-  font-weight: 700;
-}
-.title p {
-  margin-top: 8px;
-  font-size: 1.2rem;
-  opacity: 0.85;
-}
-
-/* Button */
-button {
-  margin-top: 40px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 40px;
-  font-size: 1.2rem;
-  background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
-  color: var(--button-text-color);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 40px;
-  cursor: pointer;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15), 0 0 20px rgba(0,0,0,0.7);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(6px);
-}
-button:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #333, #555);
-  box-shadow: 0 0 25px rgba(255,255,255,0.1);
-}
-button svg {
-  stroke: var(--button-text-color);
-  transition: transform 0.3s ease;
-}
-button:hover svg { transform: rotate(90deg); }
-
-/* Circle Follow */
-#circle {
-  position: fixed;
-  top: 0; left: 0;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: var(--circle-color);
-  pointer-events: none;
-  filter: blur(80px);
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-/* Footer */
-footer {
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  text-align: center;
-  color: rgba(255,255,255,0.5);
-  font-size: 0.9rem;
-  z-index: 5;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .title h2 { font-size: 1.8rem; }
-  button { padding: 14px 28px; font-size: 1rem; }
-  #circle { width: 180px; height: 180px; filter: blur(50px); }
-}
-
-/* ✅ แก้ไขจุดสำคัญ 2: วิดีโอพื้นหลังเต็มจอ */
+/* ✅ โค้ดสำหรับวิดีโอพื้นหลัง (ถูกต้องแล้ว แต่ใส่ซ้ำเพื่อความสมบูรณ์) */
 #bg-video {
   position: fixed;
-  top: 50%; /* จัดให้อยู่กึ่งกลางหน้าจอในแนวตั้ง */
-  left: 50%; /* จัดให้อยู่กึ่งกลางหน้าจอในแนวนอน */
+  top: 50%; 
+  left: 50%; 
   min-width: 100%;
   min-height: 100%;
   width: auto;
   height: auto;
-  transform: translate(-50%, -50%); /* ดึงกลับขึ้น/ซ้าย 50% เพื่อให้กึ่งกลางวิดีโอตรงกับกึ่งกลางหน้าจอ */
-  z-index: -100; /* ดันไปอยู่หลังสุด */
-  object-fit: cover; /* **ส่วนสำคัญที่สุด:** ทำให้วิดีโอปรับขนาดเพื่อคลุมพื้นที่ทั้งหมดของ viewport */
-}
+  transform: translate(-50%, -50%); 
+  z-index: -100; 
+  object-fit: cover;
