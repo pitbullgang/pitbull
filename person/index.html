@@ -1,1 +1,276 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Person List | Pitbull</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  
+  <style>
+    /* ตั้งค่าพื้นฐาน */
+    html, body {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
 
+    /* Container หลัก */
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 40px auto 100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ปุ่มย้อนกลับ */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      background: var(--accent-color, #ff4d4d);
+      border-color: var(--accent-color, #ff4d4d);
+      box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+      padding-left: 15px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .page-title h2 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      font-style: italic;
+      text-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
+      margin-bottom: 10px;
+    }
+    
+    .search-box {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 50px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 15px 50px 15px 25px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50px;
+      color: #fff;
+      font-size: 1.1rem;
+      font-family: 'Kanit', sans-serif;
+      outline: none;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    .search-box input:focus {
+      border-color: var(--accent-color, #ff4d4d);
+      box-shadow: 0 0 20px rgba(255, 77, 77, 0.2);
+    }
+    .search-box i {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.4rem;
+    }
+
+    section { margin-bottom: 60px; }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .section-header h2 {
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+    .badge-count {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .name-card {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 20px 15px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 80px;
+    }
+
+    .name-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 77, 77, 0.1);
+      border-color: var(--accent-color, #ff4d4d);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), 
+                  inset 0 0 15px rgba(255, 77, 77, 0.2);
+    }
+
+    .name-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+      letter-spacing: 0.5px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .crown-icon {
+      color: #ffd700;
+      font-size: 1.4rem;
+      filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .name-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--accent-color, #ff4d4d);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .name-card:hover::before { opacity: 1; }
+    
+    footer {
+        text-align: center;
+        margin-top: 50px;
+        color: rgba(255,255,255,0.4);
+        font-size: 0.9rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="../PITBULL.mp4" type="video/mp4">
+  </video>
+
+  <div style="position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:0;"></div>
+
+  <div class="container">
+    <a href="../" class="back-btn">
+      <i class='bx bx-left-arrow-alt'></i> Back to Home
+    </a>
+
+    <div class="page-title">
+      <h2>Person List</h2>
+      <p style="color: #ccc; letter-spacing: 2px;">รายชื่อสมาชิกในแก๊ง</p>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="ค้นหารายชื่อสมาชิก...">
+      <i class='bx bx-search'></i>
+    </div>
+
+    <section class="leader-section">
+      <div class="section-header">
+        <h2 style="color: #ff4d4d;">Leader</h2>
+        <span class="badge-count" id="leaderCount">0</span>
+      </div>
+      <div class="list-grid" id="leaderList"></div>
+    </section>
+
+    <section class="member-section">
+      <div class="section-header">
+        <h2>Member</h2>
+        <span class="badge-count" id="memberCount">0</span>
+      </div>
+      <div class="list-grid" id="memberList"></div>
+    </section>
+
+    <footer>
+        <p>© PowerBuy DekPitBull.</p>
+    </footer>
+  </div>
+
+  <script>
+    // ✅ แก้ path: ใส่ ../ เพื่อดึงไฟล์ json จากข้างนอก
+    fetch("../person.json")
+      .then(res => res.json())
+      .then(data => {
+        const leaderList = document.getElementById("leaderList");
+        const memberList = document.getElementById("memberList");
+
+        const leaders = data.filter(p => p.permission === "leader");
+        const members = data.filter(p => p.permission === "member");
+
+        document.getElementById("leaderCount").innerText = leaders.length;
+        document.getElementById("memberCount").innerText = members.length;
+
+        function createNameCard(person, isLeader=false) {
+          const div = document.createElement("div");
+          div.className = "name-card";
+          const crownHtml = isLeader ? `<i class='bx bxs-crown crown-icon'></i>` : '';
+          div.innerHTML = `<h3>${crownHtml} ${person.name}</h3>`;
+          return div;
+        }
+
+        leaders.forEach(p => leaderList.appendChild(createNameCard(p, true)));
+        members.forEach(p => memberList.appendChild(createNameCard(p)));
+
+        const searchInput = document.getElementById("searchInput");
+        searchInput.addEventListener("input", e => {
+          const val = e.target.value.toLowerCase();
+          document.querySelectorAll(".name-card").forEach(card => {
+            const name = card.innerText.toLowerCase();
+            card.style.display = name.includes(val) ? "flex" : "none";
+          });
+        });
+      })
+      .catch(err => console.error("Error loading person.json:", err));
+  </script>
+</body>
+</html>
