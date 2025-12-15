@@ -249,3 +249,15 @@ footer {
   z-index: -100;
   object-fit: cover;
 }
+
+/* =========================================
+   ZONE: SYSTEM SECURITY (ระบบป้องกัน)
+   ========================================= */
+
+/* ห้ามคลุมดำก๊อปข้อความทั้งเว็บ */
+body {
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE10+ */
+    user-select: none;         /* Standard */
+}
