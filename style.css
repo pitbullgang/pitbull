@@ -23,23 +23,15 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* ✅ แก้ไขจุดสำคัญ 1: ต้องให้พื้นหลังโปร่งใส เพื่อให้มองทะลุเห็นวิดีโอ */
 html, body {
   height: 100%;
   overflow: hidden;
   font-family: var(--font);
   color: var(--text-color);
   position: relative;
-  
-  /* === NEW GIF BACKGROUND === */
-  background-color: #3d0303; /* สีสำรอง (โทนเดียวกับ GIF) */
-  background-image: url('DRAMA_FIVEM.gif'); /* ใช้ไฟล์ GIF ที่อัปโหลดแล้ว */
-  background-size: cover; 
-  background-repeat: no-repeat; 
-  background-attachment: fixed;
-  /* ========================== */
+  background-color: transparent !important; /* แก้เป็น transparent */
 }
-
-/* 🚫 โค้ด body::before ที่เป็นพื้นหลังทับซ้อนถูกลบออกแล้ว */
 
 /* Light Glow Bottom */
 body::after {
@@ -204,4 +196,16 @@ footer {
   #circle { width: 180px; height: 180px; filter: blur(50px); }
 }
 
+/* ✅ แก้ไขจุดสำคัญ 2: ปรับแต่งวิดีโอพื้นหลัง */
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100; /* ดันไปอยู่หลังสุด */
+  object-fit: cover;
+}
 
