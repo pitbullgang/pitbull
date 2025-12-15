@@ -2,8 +2,8 @@
   --gradient-start: #000000;
   --gradient-end: #1a1a1a;
   --circle-color: rgba(255, 255, 255, 0.1);
-  --button-gradient-start: #222222;
-  --button-gradient-end: #444444;
+  --button-gradient-start: #000000;
+  --button-gradient-end: #000000;
   --button-text-color: #ffffff;
   --font: 'Kanit', sans-serif;
   --text-color: #ffffff;
@@ -203,4 +203,5 @@ footer {
   button { padding: 14px 28px; font-size: 1rem; }
   #circle { width: 180px; height: 180px; filter: blur(50px); }
 }
+
 
