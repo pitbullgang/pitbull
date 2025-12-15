@@ -7,6 +7,7 @@
   --button-text-color: #ffffff;
   --font: 'Kanit', sans-serif;
   --text-color: #ffffff;
+  --accent-color: #ff4d4d; /* สีแดง Pitbull */
 }
 
 /* 🌞 Light Theme Variables */
@@ -23,41 +24,21 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ✅ แก้ไขจุดสำคัญ: เปิดใช้งานการเลื่อนแนวนอน (Horizontal Scroll) */
+/* Main Layout */
 html, body {
   height: 100%;
   width: 100%;
-  
-  /* 👇 ส่วนที่แก้ไข: เปิดแกน X (แนวนอน) ปิดแกน Y (แนวตั้ง) */
-  overflow-x: auto; 
-  overflow-y: hidden;
-  
+  overflow: hidden; /* ล็อคหน้าจอไม่ให้เลื่อน (สำหรับหน้าแรก) */
   font-family: var(--font);
   color: var(--text-color);
   position: relative;
   background-color: transparent !important; 
-  
-  /* เพิ่ม Scrollbar ให้สวยงาม (Optional) */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-}
-
-/* ปรับแต่ง Scrollbar สำหรับ Chrome/Safari/Edge */
-body::-webkit-scrollbar {
-  height: 8px; /* ความสูงของ scrollbar แนวนอน */
-}
-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-body::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
 }
 
 /* Light Glow Bottom */
 body::after {
   content: "";
-  position: absolute; /* เปลี่ยนเป็น fixed เพื่อให้แสงอยู่ที่เดิมเวลาเลื่อนจอ */
+  position: fixed;
   bottom: 0; left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -65,12 +46,12 @@ body::after {
   background: radial-gradient(circle at center top, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 70%);
   filter: blur(80px);
   z-index: 1;
-  pointer-events: none; /* เพิ่มเพื่อไม่ให้บังการคลิก */
+  pointer-events: none;
 }
 
 /* Theme Toggle */
 .theme-toggle {
-  position: fixed; /* ใช้ fixed เพื่อให้ปุ่มลอยอยู่ที่เดิมเสมอ ไม่เลื่อนตามจอ */
+  position: fixed;
   top: 20px;
   right: 25px;
   background: rgba(255, 255, 255, 0.07);
@@ -124,74 +105,105 @@ body::after {
 }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* Center content */
+/* =========================================
+   🔥 ส่วนที่อัปเกรดใหม่: Design Cinematic
+   ========================================= */
+
+/* จัดกึ่งกลาง */
 .center-container {
   position: absolute;
-  top: 40%; 
+  top: 50%; 
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: 5;
-  /* ถ้าต้องการให้เนื้อหาเลื่อนไปทางขวาได้เมื่อมี Content ยาวๆ
-     อาจจะต้องปรับ CSS ของ Container เพิ่มเติมใน HTML */
-  width: max-content; /* ป้องกันข้อความบีบอัด */
+  width: 100%;
+  padding: 0 20px;
 }
 
-/* Gradient Text Animation */
-.gradient-text {
-  background: linear-gradient(270deg, #ffffff, #999, #ffffff);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: moveGradient 4s ease infinite;
-}
-@keyframes moveGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
+/* หัวข้อ Pitbull Gang (ใหญ่ + เงาแดง) */
 .title h2 {
-  font-size: 2.8rem;
-  font-weight: 700;
-}
-.title p {
-  margin-top: 8px;
-  font-size: 1.2rem;
-  opacity: 0.85;
+  font-size: 4.5rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 5px;
+  
+  /* เอฟเฟกต์นีออนสีแดง */
+  text-shadow: 0 0 10px rgba(255, 77, 77, 0.8),
+               0 0 40px rgba(255, 77, 77, 0.4);
 }
 
-/* Button */
+/* หัวข้อรอง (ตัวเล็กห่างๆ) */
+.title p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 8px; /* เว้นระยะห่าง */
+  margin-bottom: 40px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  opacity: 0.9;
+}
+
+/* ปุ่มกดสไตล์ Dark Glass */
 button {
-  margin-top: 40px;
-  display: inline-flex;
+  position: relative;
+  display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 40px;
-  font-size: 1.2rem;
-  background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
-  color: var(--button-text-color);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 40px;
+  justify-content: center;
+  gap: 12px;
+  
+  width: 240px; /* ความกว้างคงที่ */
+  padding: 14px 0;
+  margin: 0; /* ลบ margin เดิมออก */
+  
+  font-family: var(--font);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  background: rgba(0, 0, 0, 0.6); /* พื้นหลังดำโปร่งใส */
+  backdrop-filter: blur(10px);
+  
+  border: 1px solid rgba(255, 255, 255, 0.15); /* ขอบขาวจางๆ */
+  color: #fff;
+  border-radius: 4px;
+  
   cursor: pointer;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15), 0 0 20px rgba(0,0,0,0.7);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(6px);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
+
+/* เอฟเฟกต์ตอนชี้ปุ่ม */
 button:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, #333, #555);
-  box-shadow: 0 0 25px rgba(255,255,255,0.1);
+  background: var(--accent-color); /* สีแดง */
+  border-color: var(--accent-color);
+  box-shadow: 0 0 30px rgba(255, 77, 77, 0.6); /* เรืองแสง */
+  transform: translateY(-3px) scale(1.02);
 }
+
 button svg {
-  stroke: var(--button-text-color);
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
   transition: transform 0.3s ease;
 }
-button:hover svg { transform: rotate(90deg); }
+
+button:hover svg {
+  transform: translateX(5px);
+}
+
+/* ========================================= */
 
 /* Circle Follow */
 #circle {
-  position: fixed; /* ยังคงเป็น Fixed เพื่อให้ตามเมาส์ได้ถูกต้องแม้จะเลื่อนจอ */
+  position: fixed;
   top: 0; left: 0;
   width: 250px;
   height: 250px;
@@ -205,7 +217,7 @@ button:hover svg { transform: rotate(90deg); }
 
 /* Footer */
 footer {
-  position: fixed; /* เปลี่ยนเป็น Fixed เพื่อให้ติดขอบจอล่างตลอดเวลาไม่ว่าจะเลื่อนซ้ายขวาไปไหน */
+  position: fixed;
   bottom: 15px;
   left: 0;
   width: 100%;
@@ -213,17 +225,18 @@ footer {
   color: rgba(255,255,255,0.5);
   font-size: 0.9rem;
   z-index: 5;
-  pointer-events: none; /* กันไม่ให้บังการเลื่อน scroll */
+  pointer-events: none;
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-  .title h2 { font-size: 1.8rem; }
-  button { padding: 14px 28px; font-size: 1rem; }
+  .title h2 { font-size: 2.5rem; }
+  .title p { letter-spacing: 4px; font-size: 0.8rem; }
+  button { width: 100%; max-width: 280px; }
   #circle { width: 180px; height: 180px; filter: blur(50px); }
 }
 
-/* ✅ วิดีโอพื้นหลัง Fixed ตรึงกับที่ */
+/* Video Background */
 #bg-video {
   position: fixed;
   top: 50%;
