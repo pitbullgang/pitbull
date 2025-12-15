@@ -1,4 +1,4 @@
-/* script.js - ฉบับอัปเดต (แก้ Error ค้างหน้า Loading) */
+/* script.js - ฉบับอัปเดต (แก้ Error ค้างหน้า Loading + ระบบป้องกัน) */
 
 window.addEventListener('load', function() {
     // 1. ซ่อนหน้าจอ Loading เมื่อเว็บโหลดเสร็จ
@@ -51,4 +51,33 @@ if (circle) {
     }
     
     animateCircle();
+}
+
+/* =========================================
+   ZONE: SYSTEM SECURITY (ระบบป้องกัน)
+   ========================================= */
+
+// 4. ห้ามคลิกขวา (Disable Right Click)
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
+
+// 5. ห้ามกดปุ่ม F12 และคีย์ลัดดูโค้ด (Disable DevTools Shortcuts)
+document.onkeydown = function(e) {
+    // ปิด F12
+    if(e.keyCode == 123) {
+        return false;
+    }
+    // ปิด Ctrl+Shift+I (Inspect)
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+    }
+    // ปิด Ctrl+Shift+J (Console)
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+    }
+    // ปิด Ctrl+U (View Source)
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+    }
 }
