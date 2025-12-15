@@ -23,14 +23,16 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ✅ แก้ไขจุดสำคัญ 1: ต้องให้พื้นหลังโปร่งใส เพื่อให้มองทะลุเห็นวิดีโอ */
+/* ✅ แก้ไขจุดสำคัญ 1: พื้นหลังโปร่งใสและกำหนดความสูงเต็มจอ */
 html, body {
   height: 100%;
+  width: 100%; /* เพิ่ม width: 100% เพื่อความชัวร์ */
   overflow: hidden;
   font-family: var(--font);
   color: var(--text-color);
   position: relative;
-  background-color: transparent !important; /* แก้เป็น transparent */
+  /* body ต้องโปร่งใสเพื่อมองทะลุเห็นวิดีโอพื้นหลัง */
+  background-color: transparent !important; 
 }
 
 /* Light Glow Bottom */
@@ -196,16 +198,16 @@ footer {
   #circle { width: 180px; height: 180px; filter: blur(50px); }
 }
 
-/* ✅ แก้ไขจุดสำคัญ 2: ปรับแต่งวิดีโอพื้นหลัง */
+/* ✅ แก้ไขจุดสำคัญ 2: วิดีโอพื้นหลังเต็มจอ */
 #bg-video {
   position: fixed;
-  right: 0;
-  bottom: 0;
+  top: 50%; /* จัดให้อยู่กึ่งกลางหน้าจอในแนวตั้ง */
+  left: 50%; /* จัดให้อยู่กึ่งกลางหน้าจอในแนวนอน */
   min-width: 100%;
   min-height: 100%;
   width: auto;
   height: auto;
+  transform: translate(-50%, -50%); /* ดึงกลับขึ้น/ซ้าย 50% เพื่อให้กึ่งกลางวิดีโอตรงกับกึ่งกลางหน้าจอ */
   z-index: -100; /* ดันไปอยู่หลังสุด */
-  object-fit: cover;
+  object-fit: cover; /* **ส่วนสำคัญที่สุด:** ทำให้วิดีโอปรับขนาดเพื่อคลุมพื้นที่ทั้งหมดของ viewport */
 }
-
