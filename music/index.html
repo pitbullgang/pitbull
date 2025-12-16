@@ -84,3 +84,100 @@
     .music-card:hover {
       transform: translateY(-5px);
       background: rgba(255, 77, 77, 0.15);
+      border-color: var(--accent-color, #ff4d4d);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Icon Box */
+    .icon-box {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #ff4d4d;
+      transition: all 0.3s ease;
+    }
+    .music-card:hover .icon-box {
+      background: #ff4d4d;
+      color: #fff;
+      transform: rotate(15deg);
+    }
+
+    .info h3 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .info p {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 50px;
+        color: rgba(255,255,255,0.4);
+        font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="../PITBULL.mp4" type="video/mp4">
+  </video>
+  <div style="position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:0;"></div>
+
+  <div class="container">
+    <a href="../" class="back-btn">
+      <i class='bx bx-left-arrow-alt'></i> Back to Home
+    </a>
+
+    <div class="page-title">
+      <h2>Music List</h2>
+      <p style="color: #ccc; letter-spacing: 2px;">เพลย์ลิสต์ของพวกเรา</p>
+    </div>
+
+    <div class="list-grid" id="musicList">
+      </div>
+
+    <footer>
+        <p>© PowerBuy DekPitBull.</p>
+    </footer>
+  </div>
+
+  <script>
+    // ดึงข้อมูลจาก music.json
+    fetch("../music.json")
+      .then(res => res.json())
+      .then(data => {
+        const musicList = document.getElementById("musicList");
+
+        data.forEach(song => {
+          const a = document.createElement("a");
+          a.className = "music-card";
+          a.href = song.link;
+          a.target = "_blank"; // เปิดลิ้งค์แท็บใหม่
+
+          a.innerHTML = `
+            <div class="icon-box">
+              <i class='bx bxs-music'></i>
+            </div>
+            <div class="info">
+              <h3>${song.title}</h3>
+              <p>${song.artist}</p>
+            </div>
+          `;
+          musicList.appendChild(a);
+        });
+      })
+      .catch(err => console.error("Error loading music.json:", err));
+  </script>
+
+  <script src="../script.js"></script>
+</body>
+</html>
