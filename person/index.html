@@ -1,3 +1,11 @@
+นี่คือโค้ดไฟล์ person/index.html ฉบับแก้ไขสมบูรณ์ครับ ✅
+
+ผมได้เพิ่มบรรทัด <script src="../script.js"></script> ไว้ที่บรรทัดล่างสุดให้แล้ว เพื่อให้ระบบป้องกัน (ห้ามคลิกขวา / ห้าม F12) ทำงานในหน้านี้ด้วยครับ
+
+ก๊อปปี้โค้ดทั้งหมดนี้ไปวางทับไฟล์เดิมได้เลยครับ:
+
+HTML
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -144,7 +152,7 @@
       background: rgba(255, 77, 77, 0.1);
       border-color: var(--accent-color, #ff4d4d);
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), 
-                  inset 0 0 15px rgba(255, 77, 77, 0.2);
+                   inset 0 0 15px rgba(255, 77, 77, 0.2);
     }
 
     .name-card h3 {
@@ -272,5 +280,7 @@
       })
       .catch(err => console.error("Error loading person.json:", err));
   </script>
+
+  <script src="../script.js"></script>
 </body>
 </html>
