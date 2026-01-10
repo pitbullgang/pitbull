@@ -79,7 +79,7 @@
     "image": ""
   },
   {
-    "name": "PREM",
+    "name": "FERNANDO",
     "permission": "member",
     "image": ""
   },
@@ -90,11 +90,37 @@
     "image": ""
   },
   {
-    "name": "NGOR",
+    "name": "GUS",
     "permission": "member",
     "image": ""
   }
+  {
+    "name": "JEDI",
+    "facebook": "https://www.facebook.com/lukchin.cry",
+    "permission": "member",
+    "image": ""
+  },
+  {
+    "name": "JEDI",
+    "facebook": "https://www.facebook.com/lukchin.cry",
+    "permission": "member",
+    "image": ""
+  },
+  {
+    "name": "MELON",
+    "facebook": "https://www.facebook.com/lukchin.cry",
+    "permission": "member",
+    "image": ""
+  },
+  {
+    "name": "MIRA",
+    "facebook": "https://www.facebook.com/lukchin.cry",
+    "permission": "member",
+    "image": ""
+  },
+  
 ]
+
 
 
 
