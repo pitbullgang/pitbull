@@ -10,15 +10,15 @@
   <link rel="stylesheet" href="../style.css" />
   
   <style>
-    /* CSS เดิม */
     :root { --accent-color: #ff0000; --font-header: 'Black Ops One', cursive; --font-body: 'Kanit', sans-serif; }
     html, body { overflow-y: auto !important; height: auto !important; min-height: 100vh; background-color: #000; background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../pitbull.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
     
-    /* --- แก้ไขตำแหน่ง Container และ Nav --- */
+    /* --- แก้ไขตำแหน่ง Container ดึงขึ้นบนสุด --- */
     .container { 
         width: 90%; 
         max-width: 900px; 
-        margin: 20px auto 0; /* ลด margin-top จาก 40px เป็น 20px */
+        margin: 0 auto; /* เอา margin ด้านบนออก */
+        padding-top: 15px; /* เว้นระยะจากขอบบนนิดเดียวพอ */
         position: relative; 
         z-index: 2; 
         padding-bottom: 20px; 
@@ -28,13 +28,11 @@
         display: flex; 
         justify-content: space-between; 
         align-items: center; 
-        margin-bottom: 20px; /* ลดระยะห่างด้านล่างปุ่ม */
+        margin-bottom: 20px; 
         flex-wrap: wrap; 
         gap: 15px; 
-        margin-top: -10px; /* ดึงปุ่มขึ้นไปอีกนิด */
     }
 
-    /* CSS ปุ่มและอื่นๆ คงเดิม */
     .nav-btn { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 1.1rem; font-family: var(--font-header); letter-spacing: 1px; padding: 12px 25px; border: 1px solid rgba(255, 255, 255, 0.2); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); transition: all 0.3s ease; }
     .back-btn { background: rgba(0, 0, 0, 0.6); }
     .back-btn:hover { background: rgba(255, 0, 0, 0.2); border-color: var(--accent-color); box-shadow: 0 0 15px var(--accent-color); transform: translateX(-5px); }
@@ -46,7 +44,7 @@
     .page-title h2 { font-family: var(--font-header); font-size: 4rem; text-transform: uppercase; color: #fff; text-shadow: 4px 4px 0px #000, 0 0 25px rgba(255, 0, 0, 0.6); letter-spacing: 3px; margin: 0; }
     .page-title p { font-family: var(--font-body); color: #ccc; letter-spacing: 1px; margin-top: 5px; font-size: 1.1rem; font-weight: 300; }
 
-    /* Timeline CSS คงเดิม */
+    /* Timeline CSS */
     .timeline { position: relative; padding: 20px 0; }
     .timeline::before { content: ''; position: absolute; top: 0; left: 20px; height: 100%; width: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); }
     .timeline-item { position: relative; margin-bottom: 50px; padding-left: 60px; }
