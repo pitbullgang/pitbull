@@ -13,18 +13,16 @@
   <style>
     /* --- ตั้งค่าเฉพาะหน้านี้ --- */
     :root {
-      --accent-color: #ff0000; /* สีแดง Pitbull */
+      --accent-color: #ff0000;
       --card-bg: rgba(0, 0, 0, 0.8);
     }
 
-    /* เปิด Scrollbar ให้หน้านี้เลื่อนลงได้ */
     html, body {
         overflow-y: auto !important;
         height: auto !important;
         background-color: #000;
     }
 
-    /* Container */
     .container {
       width: 90%;
       max-width: 1200px;
@@ -33,7 +31,7 @@
       z-index: 2;
     }
 
-    /* ปุ่ม Back สไตล์ Cyber */
+    /* ปุ่ม Back */
     .back-btn {
       display: inline-flex;
       align-items: center;
@@ -46,20 +44,15 @@
       padding: 12px 25px;
       background: rgba(0, 0, 0, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      
-      /* ตัดมุมซ้ายบน-ขวาล่าง */
       clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
       transition: all 0.3s ease;
     }
-
     .back-btn:hover {
       background: rgba(255, 0, 0, 0.2);
       border-color: var(--accent-color);
       box-shadow: 0 0 15px var(--accent-color);
-      transform: translateX(-5px);
     }
 
-    /* หัวข้อหน้า */
     .page-title {
       text-align: center;
       margin-bottom: 50px;
@@ -73,13 +66,7 @@
       letter-spacing: 3px;
       margin: 0;
     }
-    .page-title p {
-      color: #aaa;
-      letter-spacing: 2px;
-      margin-top: 10px;
-    }
     
-    /* ช่องค้นหาดีไซน์ Tech */
     .search-box {
       width: 100%;
       max-width: 600px;
@@ -95,8 +82,6 @@
       font-size: 1.2rem;
       font-family: 'Kanit', sans-serif;
       outline: none;
-      
-      /* ตัดมุม */
       clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
       transition: all 0.3s ease;
     }
@@ -105,10 +90,7 @@
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
     }
     .search-box i {
-      position: absolute;
-      right: 20px; top: 50%;
-      transform: translateY(-50%);
-      color: #fff; font-size: 1.5rem;
+      position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 1.5rem;
     }
 
     /* Section Headers */
@@ -117,6 +99,7 @@
       margin-bottom: 30px;
       border-bottom: 2px solid #333;
       padding-bottom: 10px;
+      margin-top: 40px; /* เพิ่มระยะห่างแต่ละหัวข้อ */
     }
     .section-header h2 {
       font-family: 'Black Ops One', cursive;
@@ -134,14 +117,13 @@
       clip-path: polygon(5px 0, 100% 0, 100% 100%, 0 100%, 0 5px);
     }
 
-    /* Grid Layout */
     .list-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
     }
 
-    /* --- การ์ดรายชื่อ (พระเอกของเรา) --- */
+    /* Card Design */
     .name-card {
       position: relative;
       background: rgba(20, 20, 20, 0.9);
@@ -149,43 +131,24 @@
       padding: 25px 15px;
       text-align: center;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      
-      /* ตัดมุมแบบ Cyber */
-      clip-path: polygon(
-        20px 0, 100% 0, 
-        100% calc(100% - 20px), 
-        calc(100% - 20px) 100%, 
-        0 100%, 
-        0 20px
-      );
+      clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
     }
-
-    /* ขีดสีแดงมุมการ์ด */
     .name-card::before, .name-card::after {
-      content: ''; position: absolute;
-      width: 15px; height: 3px;
-      background: var(--accent-color);
-      transition: 0.3s;
+      content: ''; position: absolute; width: 15px; height: 3px; background: var(--accent-color); transition: 0.3s;
     }
     .name-card::before { top: 0; left: 0; }
     .name-card::after { bottom: 0; right: 0; }
 
-    /* Hover Effect */
     .name-card:hover {
       transform: translateY(-5px) scale(1.02);
       background: rgba(40, 0, 0, 0.6);
       border-color: var(--accent-color);
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
     }
-    
     .name-card:hover::before, .name-card:hover::after {
-      width: 100%; height: 100%; /* เส้นวิ่งรอบ */
-      background: transparent;
-      border: 2px solid var(--accent-color);
-      z-index: 1;
+      width: 100%; height: 100%; background: transparent; border: 2px solid var(--accent-color);
     }
 
-    /* ชื่อคน */
     .name-card h3 {
       font-size: 1.3rem;
       font-weight: 600;
@@ -195,23 +158,17 @@
       z-index: 2; position: relative;
     }
 
-    /* มงกุฎหัวหน้า */
-    .crown-icon {
-      color: #ffd700;
-      font-size: 1.4rem;
-      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
-      animation: floatIcon 2s ease-in-out infinite;
-    }
+    /* Icon Styles */
+    .crown-icon { font-size: 1.4rem; filter: drop-shadow(0 0 8px rgba(255,255,255,0.5)); }
+    .gold { color: #ffd700; animation: floatIcon 2s ease-in-out infinite; }
+    .silver { color: #e0e0e0; animation: floatIcon 3s ease-in-out infinite; } /* สีเงินสำหรับ Sup Leader */
+
     @keyframes floatIcon {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
 
-    footer {
-        text-align: center; margin-top: 50px;
-        color: rgba(255,255,255,0.3); letter-spacing: 2px;
-    }
-
+    footer { text-align: center; margin-top: 50px; color: rgba(255,255,255,0.3); letter-spacing: 2px; }
   </style>
 </head>
 <body>
@@ -219,14 +176,10 @@
   <video autoplay muted loop playsinline id="bg-video" style="position: fixed; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index: -2;">
     <source src="../PITBULL.mp4" type="video/mp4">
   </video>
-
   <div style="position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:-1;"></div>
 
   <div class="container">
-    
-    <a href="../" class="back-btn">
-      <i class='bx bx-chevrons-left'></i> BACK TO HOME
-    </a>
+    <a href="../" class="back-btn"><i class='bx bx-chevrons-left'></i> BACK TO HOME</a>
 
     <div class="page-title">
       <h2>PERSON LIST</h2>
@@ -238,7 +191,7 @@
       <i class='bx bx-search'></i>
     </div>
 
-    <section class="leader-section">
+    <section>
       <div class="section-header">
         <h2 style="color: var(--accent-color); text-shadow: 0 0 10px red;">LEADER</h2>
         <span class="badge-count" id="leaderCount">0</span>
@@ -246,7 +199,15 @@
       <div class="list-grid" id="leaderList"></div>
     </section>
 
-    <section class="member-section">
+    <section>
+      <div class="section-header">
+        <h2 style="color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5);">SUP LEADER</h2>
+        <span class="badge-count" id="supLeaderCount">0</span>
+      </div>
+      <div class="list-grid" id="supLeaderList"></div>
+    </section>
+
+    <section>
       <div class="section-header">
         <h2>MEMBER</h2>
         <span class="badge-count" id="memberCount">0</span>
@@ -254,59 +215,58 @@
       <div class="list-grid" id="memberList"></div>
     </section>
 
-    <footer>
-        <p>© DESIGNED BY KEN.</p>
-    </footer>
+    <footer><p>© DESIGNED BY KEN.</p></footer>
   </div>
 
   <script>
-    // ดึงข้อมูลจาก JSON (Path: ../person.json)
     fetch("../person.json")
       .then(res => res.json())
       .then(data => {
         const leaderList = document.getElementById("leaderList");
+        const supLeaderList = document.getElementById("supLeaderList");
         const memberList = document.getElementById("memberList");
 
-        // กรองข้อมูลตาม Permission
+        // กรองข้อมูล (สำคัญ: ในไฟล์ json ต้องแก้ permission เป็น "sup-leader" สำหรับรองหัวหน้า)
         const leaders = data.filter(p => p.permission === "leader");
+        const supLeaders = data.filter(p => p.permission === "sup-leader");
         const members = data.filter(p => p.permission === "member");
 
         // อัปเดตตัวเลข
         document.getElementById("leaderCount").innerText = leaders.length;
+        document.getElementById("supLeaderCount").innerText = supLeaders.length;
         document.getElementById("memberCount").innerText = members.length;
 
-        // ฟังก์ชั่นสร้างการ์ด
-        function createNameCard(person, isLeader=false) {
+        // ฟังก์ชั่นสร้างการ์ด (เพิ่ม rank เพื่อเลือกไอคอน)
+        function createNameCard(person, rank="member") {
           const div = document.createElement("div");
           div.className = "name-card";
           
-          const crownHtml = isLeader ? `<i class='bx bxs-crown crown-icon'></i>` : '';
+          let iconHtml = '';
+          if (rank === 'leader') {
+             iconHtml = `<i class='bx bxs-crown crown-icon gold'></i>`; // มงกุฎทอง
+          } else if (rank === 'sup-leader') {
+             iconHtml = `<i class='bx bxs-star crown-icon silver'></i>`; // ดาวเงิน
+          }
           
-          div.innerHTML = `<h3>${crownHtml} ${person.name}</h3>`;
+          div.innerHTML = `<h3>${iconHtml} ${person.name}</h3>`;
           return div;
         }
 
         // วนลูปสร้างการ์ด
-        leaders.forEach(p => leaderList.appendChild(createNameCard(p, true)));
-        members.forEach(p => memberList.appendChild(createNameCard(p)));
+        leaders.forEach(p => leaderList.appendChild(createNameCard(p, 'leader')));
+        supLeaders.forEach(p => supLeaderList.appendChild(createNameCard(p, 'sup-leader')));
+        members.forEach(p => memberList.appendChild(createNameCard(p, 'member')));
 
-        // ระบบค้นหา (Real-time Search)
-        const searchInput = document.getElementById("searchInput");
-        searchInput.addEventListener("input", e => {
+        // ระบบค้นหา
+        document.getElementById("searchInput").addEventListener("input", e => {
           const val = e.target.value.toLowerCase();
           document.querySelectorAll(".name-card").forEach(card => {
             const name = card.innerText.toLowerCase();
-            // ถ้าตรงกับคำค้นหาให้แสดง (flex), ถ้าไม่ตรงให้ซ่อน (none)
             card.style.display = name.includes(val) ? "flex" : "none";
           });
         });
-      })
-      .catch(err => {
-        console.error("หาไฟล์ person.json ไม่เจอ หรือ JSON ผิดพลาด", err);
-        alert("ไม่สามารถโหลดข้อมูลรายชื่อได้ (ตรวจสอบไฟล์ person.json)");
       });
   </script>
 
-  <script src="../script.js"></script>
 </body>
 </html>
