@@ -7,42 +7,61 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* --- Styles สำหรับโลโก้สลับ --- */
+    /* --- Styles สำหรับโลโก้สลับแบบ 3D มีมิติ --- */
     .logo-container {
       display: grid;
       place-items: center;
       margin-top: 40px;
       margin-bottom: 20px;
-      /* เพิ่มความสูงของ Container เพื่อรองรับโลโก้ที่ใหญ่ขึ้น */
-      height: 380px; 
+      height: 380px;
+      /* หัวใจสำคัญของ 3D: สร้างมิติความลึก */
+      perspective: 2000px; 
     }
 
     .logo-img {
       grid-area: 1 / 1;
-      /* เพิ่มขนาดความกว้างของโลโก้ */
-      width: 550px; 
-      max-width: 90%; /* ยังคงให้ย่อตามหน้าจอมือถือได้ */
+      width: 550px;
+      max-width: 90%;
       object-fit: contain;
+      /* เริ่มต้น: ซ่อนไว้ในฉากหลังลึกๆ */
+      opacity: 0;
+      transform: translateZ(-1000px) scale(0.5) rotateX(30deg);
+      filter: blur(20px) brightness(0);
+      /* ป้องกันการเห็นด้านหลังภาพเวลาหมุน */
+      backface-visibility: hidden;
     }
 
-    /* อนิเมชั่นสลับรูป */
+    /* ใช้ Animation เดียวกัน แต่เริ่มคนละเวลา */
     .logo-1 {
-      animation: switchLogo1 6s infinite ease-in-out;
+      /* ใช้ cubic-bezier เพื่อให้จังหวะพุ่งเข้า-ออกดูหนักแน่น */
+      animation: dramatic3D 8s infinite cubic-bezier(0.7, 0, 0.3, 1);
     }
     .logo-2 {
-      animation: switchLogo2 6s infinite ease-in-out;
+      animation: dramatic3D 8s infinite cubic-bezier(0.7, 0, 0.3, 1);
+      /* เริ่มช้ากว่าตัวแรกครึ่งรอบ (4 วินาที) */
+      animation-delay: 4s; 
     }
 
-    @keyframes switchLogo1 {
-      0%, 45% { opacity: 1; transform: scale(1); }
-      50%, 95% { opacity: 0; transform: scale(0.9); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes switchLogo2 {
-      0%, 45% { opacity: 0; transform: scale(0.9); }
-      50%, 95% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(0.9); }
+    /* คีย์เฟรมสำหรับเอฟเฟกต์ 3D พุ่งเข้า-ออก */
+    @keyframes dramatic3D {
+      0%, 5% {
+        /* สถานะเริ่มต้น: อยู่ลึกในฉากหลัง เบลอ และมืด */
+        opacity: 0;
+        transform: translateZ(-1000px) scale(0.5) rotateX(30deg);
+        filter: blur(20px) brightness(0);
+      }
+      15%, 45% {
+        /* สถานะโชว์: พุ่งมาอยู่ด้านหน้า ชัดเจน สว่าง */
+        opacity: 1;
+        transform: translateZ(0) scale(1) rotateX(0deg);
+        filter: blur(0) brightness(1);
+      }
+      55%, 100% {
+        /* สถานะจบ: พุ่งกลับไปข้างหลัง มืดและเบลออีกครั้ง */
+        opacity: 0;
+        transform: translateZ(-1000px) scale(0.5) rotateX(-30deg);
+        filter: blur(20px) brightness(0);
+      }
     }
 
     /* --- Styles สำหรับฝนตก (ใช้รูป whitepitbull.png) --- */
