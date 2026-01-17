@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music List | Pitbull Gang</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Kanit:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   
   <link rel="stylesheet" href="../style.css" />
@@ -14,8 +14,8 @@
     /* --- ตั้งค่าเฉพาะหน้านี้ --- */
     :root {
       --accent-color: #ff0000;
-      --font-main: 'Chakra Petch', sans-serif;
-      --font-sub: 'Kanit', sans-serif;
+      --font-header: 'Teko', sans-serif; /* ฟอนต์หัวข้อใหม่ */
+      --font-body: 'Kanit', sans-serif;  /* ฟอนต์เนื้อหาใหม่ */
     }
 
     html, body {
@@ -35,23 +35,24 @@
       padding-bottom: 20px;
     }
 
-    /* ปุ่ม Back (ดีไซน์เดียวกับหน้า Person) */
+    /* ปุ่ม Back */
     .back-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       color: #fff;
       text-decoration: none;
-      font-size: 1.1rem;
-      font-family: var(--font-main);
-      font-weight: 700;
+      font-size: 1.3rem;
+      font-family: var(--font-header); /* ใช้ Teko */
+      font-weight: 600;
       letter-spacing: 1px;
       margin-bottom: 30px;
-      padding: 12px 25px;
+      padding: 10px 25px;
       background: rgba(0, 0, 0, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.2);
       clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
       transition: all 0.3s ease;
+      text-transform: uppercase;
     }
     .back-btn:hover {
       background: rgba(255, 0, 0, 0.2);
@@ -66,22 +67,23 @@
       margin-bottom: 60px;
     }
     .page-title h2 {
-      font-family: var(--font-main);
-      font-size: 4rem;
+      font-family: var(--font-header); /* ใช้ Teko */
+      font-size: 5rem; /* ขยายใหญ่สะใจ */
       font-weight: 700;
       text-transform: uppercase;
       color: #fff;
-      text-shadow: 4px 4px 0px #000, 0 0 20px rgba(255, 0, 0, 0.6);
-      letter-spacing: 3px;
+      text-shadow: 4px 4px 0px #000, 0 0 25px rgba(255, 0, 0, 0.5);
+      letter-spacing: 2px;
       margin: 0;
-      font-style: italic;
+      line-height: 0.9;
     }
     .page-title p {
-      font-family: var(--font-sub);
+      font-family: var(--font-body);
       color: #ccc;
-      letter-spacing: 2px;
-      margin-top: 5px;
+      letter-spacing: 1px;
+      margin-top: 10px;
       font-size: 1.1rem;
+      font-weight: 300;
     }
 
     /* Grid Layout */
@@ -91,19 +93,17 @@
       gap: 25px;
     }
 
-    /* --- MUSIC CARD DESIGN (Cyber Style) --- */
+    /* --- MUSIC CARD DESIGN --- */
     .music-card {
       position: relative;
       display: flex;
       align-items: center;
       gap: 20px;
       padding: 25px;
-      background: rgba(15, 15, 15, 0.9); /* พื้นหลังดำเข้มโปร่งแสง */
+      background: rgba(15, 15, 15, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.1);
       text-decoration: none;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      
-      /* ตัดมุมเฉียง */
       clip-path: polygon(
         20px 0, 100% 0, 
         100% calc(100% - 20px), 
@@ -113,7 +113,7 @@
       );
     }
 
-    /* เส้นตกแต่งมุม (บนซ้าย / ล่างขวา) */
+    /* เส้นตกแต่งมุม */
     .music-card::before, .music-card::after {
       content: '';
       position: absolute;
@@ -128,12 +128,11 @@
     /* Hover Effect */
     .music-card:hover {
       transform: translateY(-5px);
-      background: rgba(40, 0, 0, 0.4); /* พื้นหลังแดงจางๆ */
+      background: rgba(40, 0, 0, 0.4);
       border-color: var(--accent-color);
       box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
     }
     
-    /* ตอนชี้ให้เส้นมุมวิ่งขยายเป็นกรอบ */
     .music-card:hover::before, .music-card:hover::after {
       width: 100%;
       height: 100%;
@@ -152,8 +151,6 @@
       font-size: 2rem;
       color: #fff;
       transition: all 0.4s ease;
-      
-      /* ตัดมุมเล็กน้อย */
       clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
     }
 
@@ -170,24 +167,25 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      z-index: 2; /* ให้อยู่เหนือเส้นกรอบ */
+      z-index: 2;
     }
     
     .info h3 {
-      font-family: var(--font-main);
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-family: var(--font-header); /* ใช้ Teko */
+      font-size: 1.8rem; /* ขยายให้ใหญ่อ่านง่าย */
+      font-weight: 600;
       color: #fff;
-      margin: 0 0 5px 0;
+      margin: 0;
       text-transform: uppercase;
       letter-spacing: 1px;
+      line-height: 1.1;
     }
     
     .info p {
-      font-family: var(--font-sub);
-      font-size: 1rem;
+      font-family: var(--font-body); /* ใช้ Kanit */
+      font-size: 0.95rem;
       color: #aaa;
-      margin: 0;
+      margin-top: 5px;
       font-weight: 300;
     }
 
@@ -201,8 +199,8 @@
         padding-bottom: 50px;
         color: rgba(255,255,255,0.4);
         letter-spacing: 2px;
-        font-family: var(--font-main);
-        font-size: 0.9rem;
+        font-family: var(--font-header);
+        font-size: 1rem;
         clear: both;
     }
   </style>
@@ -217,7 +215,7 @@
   <div class="container">
     
     <a href="../" class="back-btn">
-      <i class='bx bx-chevrons-left'></i> BACK TO HOME
+      <i class='bx bx-chevrons-left'></i> Back to Home
     </a>
 
     <div class="page-title">
@@ -234,7 +232,6 @@
   </div>
 
   <script>
-    // ดึงข้อมูลจาก music.json
     fetch("../music.json")
       .then(res => res.json())
       .then(data => {
@@ -244,9 +241,8 @@
           const a = document.createElement("a");
           a.className = "music-card";
           a.href = song.link;
-          a.target = "_blank"; // เปิดลิ้งค์แท็บใหม่
+          a.target = "_blank"; 
 
-          // สร้างเนื้อหาภายในการ์ด
           a.innerHTML = `
             <div class="icon-box">
               <i class='bx bxs-music'></i>
