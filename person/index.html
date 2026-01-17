@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Person List | Pitbull Gang</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&family=Kanit:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Kanit:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   
   <link rel="stylesheet" href="../style.css" />
@@ -14,8 +14,8 @@
     /* --- ตั้งค่าเฉพาะหน้านี้ --- */
     :root {
       --accent-color: #ff0000;
-      --font-header: 'Orbitron', sans-serif; /* ฟอนต์หัวข้อใหม่ */
-      --font-name: 'Rajdhani', sans-serif;   /* ฟอนต์ชื่อใหม่ */
+      /* เปลี่ยนฟอนต์หลักเป็น Chakra Petch */
+      --font-main: 'Chakra Petch', sans-serif;
     }
 
     html, body {
@@ -42,8 +42,9 @@
       color: #fff;
       text-decoration: none;
       font-size: 1.1rem;
-      font-family: var(--font-header); /* ใช้ฟอนต์ใหม่ */
-      letter-spacing: 2px;
+      font-family: var(--font-main);
+      font-weight: 700;
+      letter-spacing: 1px;
       margin-bottom: 30px;
       padding: 12px 25px;
       background: rgba(0, 0, 0, 0.6);
@@ -63,20 +64,22 @@
       margin-bottom: 50px;
     }
     .page-title h2 {
-      font-family: var(--font-header); /* ใช้ฟอนต์ใหม่ */
-      font-size: 3.8rem;
-      font-weight: 900;
+      font-family: var(--font-main);
+      font-size: 4rem; /* ขยายให้ใหญ่สะใจ */
+      font-weight: 700;
       text-transform: uppercase;
       color: #fff;
-      text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-      letter-spacing: 4px;
+      text-shadow: 4px 4px 0px #000, 0 0 20px rgba(255, 0, 0, 0.6); /* เพิ่มขอบดำให้ดูคม */
+      letter-spacing: 3px;
       margin: 0;
+      font-style: italic; /* เอียงนิดๆ ให้ดูซิ่ง */
     }
     .page-title p {
       font-family: 'Kanit', sans-serif;
-      color: #aaa;
+      color: #ccc;
       letter-spacing: 1px;
       margin-top: 5px;
+      font-size: 1.1rem;
     }
     
     /* Search Box */
@@ -88,13 +91,13 @@
     }
     .search-box input {
       width: 100%;
-      padding: 15px 50px 15px 20px;
+      padding: 15px 50px 15px 25px;
       background: rgba(0, 0, 0, 0.8);
       border: 2px solid #333;
       color: #fff;
-      font-size: 1.4rem;
-      font-family: var(--font-name); /* ใช้ฟอนต์ใหม่ */
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-family: var(--font-main);
+      font-weight: 600;
       outline: none;
       clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
       transition: all 0.3s ease;
@@ -105,9 +108,9 @@
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
     }
     .search-box input::placeholder {
-        font-family: var(--font-header);
-        font-size: 1rem;
-        opacity: 0.5;
+        font-family: var(--font-main);
+        font-weight: 400;
+        opacity: 0.6;
     }
     .search-box i {
       position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 1.5rem;
@@ -117,63 +120,64 @@
     .section-header {
       display: flex; align-items: center; gap: 15px;
       margin-bottom: 30px;
-      border-bottom: 2px solid #333;
+      border-bottom: 3px solid #333;
       padding-bottom: 10px;
       margin-top: 50px; 
     }
     .section-header h2 {
-      font-family: var(--font-header); /* ใช้ฟอนต์ใหม่ */
-      font-size: 2.2rem;
+      font-family: var(--font-main);
+      font-size: 2.5rem;
       font-weight: 700;
       color: #fff;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
+      font-style: italic;
     }
     .badge-count {
       color: #000;
-      font-family: var(--font-header); /* ใช้ฟอนต์ใหม่ */
-      font-weight: 900;
+      font-family: var(--font-main);
+      font-weight: 700;
       padding: 4px 14px;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       clip-path: polygon(5px 0, 100% 0, 100% 100%, 0 100%, 0 5px);
     }
 
     .list-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* ขยายการ์ดให้กว้างขึ้นนิดนึง */
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 20px;
     }
 
     /* Card Design */
     .name-card {
       position: relative;
-      background: rgba(10, 10, 10, 0.9);
+      background: rgba(15, 15, 15, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 20px 10px;
+      padding: 22px 10px;
       text-align: center;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
     }
     .name-card::before, .name-card::after {
-      content: ''; position: absolute; width: 20px; height: 4px; background: var(--accent-color); transition: 0.3s;
+      content: ''; position: absolute; width: 25px; height: 5px; background: var(--accent-color); transition: 0.3s;
     }
     .name-card::before { top: 0; left: 0; }
     .name-card::after { bottom: 0; right: 0; }
 
     .name-card:hover {
       transform: translateY(-5px);
-      background: rgba(30, 30, 30, 0.8);
+      background: rgba(40, 0, 0, 0.4);
       border-color: var(--accent-color);
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.15);
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
     }
     .name-card:hover::before, .name-card:hover::after {
       width: 100%; height: 100%; background: transparent; border: 2px solid var(--accent-color);
     }
 
     .name-card h3 {
-      font-family: var(--font-name); /* ใช้ฟอนต์ใหม่ */
-      font-size: 1.6rem;
-      font-weight: 700;
+      font-family: var(--font-main);
+      font-size: 1.5rem;
+      font-weight: 600;
       color: #fff;
       margin: 0;
       display: flex; justify-content: center; align-items: center; gap: 10px;
@@ -202,10 +206,10 @@
         text-align: center; 
         margin-top: 80px;   
         padding-bottom: 50px; 
-        color: rgba(255,255,255,0.3); 
+        color: rgba(255,255,255,0.4); 
         letter-spacing: 2px;
-        font-family: var(--font-header);
-        font-size: 0.8rem;
+        font-family: var(--font-main);
+        font-size: 0.9rem;
         clear: both;
     }
   </style>
@@ -232,7 +236,7 @@
 
     <section>
       <div class="section-header">
-        <h2 style="color: #ffd700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);">LEADER</h2>
+        <h2 style="color: #ffd700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">LEADER</h2>
         <span class="badge-count" id="leaderCount" style="background: #ffd700;">0</span>
       </div>
       <div class="list-grid" id="leaderList"></div>
@@ -240,7 +244,7 @@
 
     <section>
       <div class="section-header">
-        <h2 style="color: #ff0000; text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);">SUP LEADER</h2>
+        <h2 style="color: #ff0000; text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);">SUP LEADER</h2>
         <span class="badge-count" id="supLeaderCount" style="background: #ff0000; color: #fff;">0</span>
       </div>
       <div class="list-grid" id="supLeaderList"></div>
