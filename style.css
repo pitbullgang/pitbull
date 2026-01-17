@@ -1,166 +1,175 @@
-/* =========================================
-   PITBULL GANG STYLE (FIXED LAYOUT)
-   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Kanit:wght@400;800&display=swap');
 
 :root {
-  --font: 'Kanit', sans-serif;
-  --text-color: #ffffff;
-  --accent-color: #ff4d4d;
-  --circle-color: rgba(255, 255, 255, 0.1);
+  --primary-font: 'Kanit', sans-serif;
+  --header-font: 'Black Ops One', cursive; /* ฟอนต์หัวข้อแบบดุดัน */
+  --accent-color: #ff0000; /* สีแดงสด */
+  --dark-bg: rgba(0, 0, 0, 0.85);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Main Layout */
-html, body {
-  height: 100%;
+body {
+  height: 100vh;
   width: 100%;
   overflow: hidden;
-  font-family: var(--font);
-  color: var(--text-color);
   background-color: #000;
-
-  /* --- แก้ไข: เหลือแค่รูปพื้นหลังกำแพงกับเงา (เอาโลโก้ออก) --- */
-  background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), /* เงาดำเข้มขึ้นนิดนึงเพื่อให้อ่านง่าย */
-    url('pitbull.png'); /* รูปพื้นหลังกำแพง */
-
+  
+  /* พื้นหลังเดิม */
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), #000), url('pitbull.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   
-  /* จัด layout ให้ทุกอย่างอยู่กลางจอเสมอ */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* แสงฟุ้งด้านล่าง */
-body::after {
-  content: "";
-  position: fixed;
-  bottom: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 300px;
-  background: radial-gradient(circle at center top, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
-  filter: blur(80px);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* =========================================
-   CONTAINER & LOGO (ส่วนที่เพิ่มใหม่)
-   ========================================= */
-
-/* กล่องรวมเนื้อหาทั้งหมด (โลโก้ + ปุ่ม) */
-.main-container {
-  display: flex;
-  flex-direction: column; /* เรียงลงแนวตั้ง */
-  align-items: center;    /* จัดกึ่งกลาง */
-  justify-content: center;
-  gap: 30px; /* ระยะห่างระหว่างโลโก้กับปุ่ม */
-  z-index: 10;
-  width: 100%;
-  padding: 20px;
-}
-
-/* ปรับแต่งโลโก้ */
-.logo-img {
-  width: 550px;       /* ขนาดโลโก้ */
-  max-width: 90vw;    /* ถ้าจอมือถือเล็กกว่า 550px ให้ย่อตามจอ */
-  height: auto;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); /* เงาหลังโลโก้ */
-  animation: floatLogo 3s ease-in-out infinite; /* (Optional) ให้โลโก้ลอยไปมา */
-}
-
-@keyframes floatLogo {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* กลุ่มปุ่มกด */
-.button-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* ระยะห่างระหว่างปุ่มแต่ละปุ่ม */
-  width: 100%;
-}
-
-/* =========================================
-   BUTTON STYLES
-   ========================================= */
-button {
-  position: relative;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 12px;
-  width: 100%;
-  max-width: 320px;
-  padding: 15px 0;
-  font-family: var(--font);
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
-  border-radius: 50px;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  font-family: var(--primary-font);
 }
 
-button:hover {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
-  box-shadow: 0 0 30px rgba(255, 77, 77, 0.5);
-  transform: translateY(-3px) scale(1.02);
-}
-
-button svg {
-  width: 22px; height: 22px; stroke: #fff;
-  transition: transform 0.3s ease;
-}
-button:hover svg { transform: translateX(5px) scale(1.1); }
-
-/* =========================================
-   LOADING & EFFECTS (คงเดิม)
-   ========================================= */
+/* --- LOADER (เก็บไว้เหมือนเดิม) --- */
 #loading-screen {
-  position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #000;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  z-index: 999;
-  transition: opacity 1s ease;
+  position: fixed; inset: 0; background: #000; z-index: 999;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  transition: opacity 0.5s;
 }
-#loading-screen.hidden { opacity: 0; pointer-events: none; }
-
 .loader {
-  border: 4px solid rgba(255,255,255,0.1);
-  border-top: 4px solid var(--accent-color);
-  border-radius: 50%; width: 60px; height: 60px;
+  width: 50px; height: 50px; border: 5px solid #333;
+  border-top-color: var(--accent-color); border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-footer {
-  position: fixed; bottom: 20px; left: 0; width: 100%;
-  text-align: center; color: rgba(255,255,255,0.4);
-  font-size: 0.8rem; z-index: 5; pointer-events: none;
+/* --- LOGO SECTION --- */
+.logo-container {
+  margin-bottom: 40px;
+  animation: float 4s ease-in-out infinite;
+  z-index: 2;
 }
 
-body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.logo-img {
+  width: 500px;
+  max-width: 90vw;
+  filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.3)); /* เงาสีแดงจางๆ */
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+/* --- MENU NEW DESIGN (Skewed Style) --- */
+.menu-grid {
+  display: flex;
+  gap: 20px;
+  z-index: 10;
+  perspective: 1000px;
+}
+
+/* ดีไซน์ปุ่มแบบการ์ดเอียงๆ */
+.gang-btn {
+  position: relative;
+  background: var(--dark-bg);
+  color: #fff;
+  width: 200px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: 2px solid #333;
+  transform: skewX(-20deg); /* เอียงกล่อง */
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* แก้ตัวหนังสือกลับมาตรง */
+.gang-btn-content {
+  transform: skewX(20deg); 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-title {
+  font-family: var(--header-font);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0px #000;
+}
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+  fill: #888;
+  transition: 0.3s;
+}
+
+/* --- HOVER EFFECTS (ลูกเล่นตอนชี้) --- */
+.gang-btn:hover {
+  border-color: var(--accent-color);
+  background: rgba(255, 0, 0, 0.1);
+  box-shadow: 0 0 30px var(--accent-color);
+  transform: skewX(-20deg) scale(1.1); /* ขยายใหญ่ขึ้น */
+}
+
+.gang-btn:hover .btn-title {
+  color: var(--accent-color);
+  animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+}
+
+.gang-btn:hover .btn-icon {
+  fill: #fff;
+  transform: scale(1.2);
+}
+
+/* เส้นวิ่งเท่ๆ บนปุ่ม */
+.gang-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+.gang-btn:hover::before {
+  left: 100%;
+}
+
+/* เอฟเฟกต์ตัวหนังสือกระตุก */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* --- RESPONSIVE (มือถือ) --- */
+@media (max-width: 768px) {
+  .menu-grid {
+    flex-direction: column; /* มือถือให้เรียงลง */
+    gap: 15px;
+  }
+  .gang-btn {
+    width: 280px; /* ขยายกว้างขึ้นในมือถือ */
+    height: 70px;
+    transform: skewX(-10deg); /* เอียงน้อยลงหน่อย */
+  }
+  .gang-btn-content {
+    transform: skewX(10deg);
+  }
+  .logo-img {
+    width: 350px;
+  }
+}
+
+footer {
+  position: absolute; bottom: 20px;
+  color: #555; font-size: 0.8rem; letter-spacing: 2px;
 }
