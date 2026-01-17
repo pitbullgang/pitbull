@@ -22,7 +22,7 @@
         height: auto !important;
         min-height: 100vh;
         
-        /* --- แก้ไขพื้นหลัง: ใช้รูปภาพแทนวิดีโอ --- */
+        /* พื้นหลังรูปภาพ */
         background-color: #000;
         background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../pitbull.png');
         background-size: cover;
@@ -102,7 +102,7 @@
       position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 1.5rem;
     }
 
-    /* Section Headers */
+    /* Section Headers (ลบ badge ออกแล้ว) */
     .section-header {
       display: flex; align-items: center; gap: 15px;
       margin-bottom: 30px;
@@ -116,14 +116,6 @@
       color: #fff;
       text-transform: uppercase;
       letter-spacing: 2px;
-    }
-    .badge-count {
-      background: var(--accent-color);
-      color: #000;
-      font-weight: bold;
-      padding: 2px 12px;
-      font-size: 1rem;
-      clip-path: polygon(5px 0, 100% 0, 100% 100%, 0 100%, 0 5px);
     }
 
     .list-grid {
@@ -210,24 +202,21 @@
     <section>
       <div class="section-header">
         <h2 style="color: #ffd700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);">LEADER</h2>
-        <span class="badge-count" id="leaderCount" style="background: #ffd700;">0</span>
-      </div>
+        </div>
       <div class="list-grid" id="leaderList"></div>
     </section>
 
     <section>
       <div class="section-header">
         <h2 style="color: #ff0000; text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);">SUP LEADER</h2>
-        <span class="badge-count" id="supLeaderCount">0</span>
-      </div>
+        </div>
       <div class="list-grid" id="supLeaderList"></div>
     </section>
 
     <section>
       <div class="section-header">
         <h2 style="color: #ffffff;">MEMBER</h2>
-        <span class="badge-count" id="memberCount" style="background: #ffffff;">0</span>
-      </div>
+        </div>
       <div class="list-grid" id="memberList"></div>
     </section>
 
@@ -246,9 +235,7 @@
         const supLeaders = data.filter(p => p.permission === "sup-leader");
         const members = data.filter(p => p.permission === "member");
 
-        document.getElementById("leaderCount").innerText = leaders.length;
-        document.getElementById("supLeaderCount").innerText = supLeaders.length;
-        document.getElementById("memberCount").innerText = members.length;
+        // ลบโค้ด JS ส่วนที่สั่งให้โชว์ตัวเลขออก เพื่อไม่ให้เกิด Error
 
         function createNameCard(person, rank="member") {
           const div = document.createElement("div");
