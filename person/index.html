@@ -29,6 +29,27 @@
         background-repeat: no-repeat;
     }
 
+    /* --- สไตล์ของเม็ดฝน (Pitbull Rain) --- */
+    .pitbull-rain {
+      position: fixed;
+      top: -100px;
+      z-index: 9999;
+      pointer-events: none;
+      /* แก้ไข path: เรียกไฟล์จากโฟลเดอร์เดียวกันได้เลย */
+      background-image: url('pitbullice.png'); 
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      filter: invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(20deg); }
+    }
+
+    /* --- Container & Layout --- */
     .container {
       width: 90%;
       max-width: 1200px;
@@ -103,7 +124,7 @@
     /* Section Headers */
     .section-header {
       display: flex; align-items: center; gap: 15px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       border-bottom: 2px solid #333;
       padding-bottom: 10px;
       margin-top: 40px; 
@@ -117,25 +138,23 @@
     }
 
     /* --- LAYOUT CONFIGURATION --- */
-    
-    /* 1. สำหรับ Sup Leader & Member: ใช้ Grid ปกติ */
     .list-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
     }
 
-    /* 2. สำหรับ LEADER เท่านั้น: ใช้ Flex เพื่อจัดกึ่งกลาง */
+    /* LEADER (Flexbox Center) */
     #leaderList {
         display: flex;
-        justify-content: center; /* จัดกึ่งกลางแนวนอน */
+        justify-content: center;
         flex-wrap: wrap;
     }
-    
-    /* ปรับขนาดการ์ดเฉพาะใน Leader ไม่ให้ยืดจนน่าเกลียด */
     #leaderList .name-card {
-        width: 100%;
-        max-width: 300px; /* ล็อกความกว้างไว้ให้พอดีสวยงาม */
+        width: auto;
+        min-width: 180px;
+        max-width: 200px;
+        padding: 12px 10px;
     }
 
     /* Card Design */
@@ -143,45 +162,45 @@
       position: relative;
       background: rgba(20, 20, 20, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 25px 15px;
+      padding: 15px 10px;
       text-align: center;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+      clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
     }
     .name-card::before, .name-card::after {
-      content: ''; position: absolute; width: 15px; height: 3px; background: var(--accent-color); transition: 0.3s;
+      content: ''; position: absolute; width: 10px; height: 2px; background: var(--accent-color); transition: 0.3s;
     }
     .name-card::before { top: 0; left: 0; }
     .name-card::after { bottom: 0; right: 0; }
 
     .name-card:hover {
-      transform: translateY(-5px) scale(1.02);
+      transform: translateY(-3px) scale(1.02);
       background: rgba(40, 0, 0, 0.6);
       border-color: var(--accent-color);
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
     }
     .name-card:hover::before, .name-card:hover::after {
       width: 100%; height: 100%; background: transparent; border: 2px solid var(--accent-color);
     }
 
     .name-card h3 {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: #fff;
       margin: 0;
-      display: flex; justify-content: center; align-items: center; gap: 8px;
+      display: flex; justify-content: center; align-items: center; gap: 6px;
       z-index: 2; position: relative;
     }
 
     /* Icon Styles */
-    .crown-icon { font-size: 1.4rem; filter: drop-shadow(0 0 8px rgba(255,255,255,0.5)); }
+    .crown-icon { font-size: 1.2rem; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
     .gold { color: #ffd700; animation: floatIcon 2s ease-in-out infinite; } 
     .silver { color: #e0e0e0; animation: floatIcon 3s ease-in-out infinite; } 
     .bronze { color: #cd7f32; animation: floatIcon 4s ease-in-out infinite; } 
 
     @keyframes floatIcon {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+      50% { transform: translateY(-3px); }
     }
 
     footer { 
@@ -189,8 +208,8 @@
         bottom: auto !important;
         width: 100%;
         text-align: center; 
-        margin-top: 80px;   
-        padding-bottom: 50px; 
+        margin-top: 60px;   
+        padding-bottom: 40px; 
         color: rgba(255,255,255,0.3); 
         letter-spacing: 2px;
         clear: both;
@@ -236,6 +255,7 @@
   </div>
 
   <script>
+    // 1. โหลดข้อมูลสมาชิก
     fetch("../person.json")
       .then(res => res.json())
       .then(data => {
@@ -276,6 +296,30 @@
           });
         });
       });
+
+    // 2. Script สำหรับเอฟเฟกต์ฝนตก (Pitbull Rain)
+    function createPitbullRain() {
+      const rain = document.createElement('div');
+      rain.classList.add('pitbull-rain');
+
+      rain.style.left = Math.random() * 100 + "vw";
+      const duration = Math.random() * 3 + 2;
+      rain.style.animationDuration = duration + "s";
+
+      const size = Math.random() * 50 + 40; 
+      rain.style.width = size + "px";
+      rain.style.height = (size / 2) + "px"; 
+
+      rain.style.opacity = Math.random() * 0.5 + 0.3;
+
+      document.body.appendChild(rain);
+
+      setTimeout(() => {
+        rain.remove();
+      }, duration * 1000);
+    }
+
+    setInterval(createPitbullRain, 300);
   </script>
 
 </body>
