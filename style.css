@@ -1,196 +1,38 @@
-/* =========================================
-   PITBULL GANG STYLE (FINAL VERSION - MERGED BG)
-   ========================================= */
+<body>
 
-:root {
-  --font: 'Kanit', sans-serif;
-  --text-color: #ffffff;
-  --accent-color: #ff4d4d; /* สีแดง Pitbull */
-  --circle-color: rgba(255, 255, 255, 0.1);
-}
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
 
-/* Reset ค่าพื้นฐาน */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    <div class="main-container">
+        
+        <img src="pitbullgang.png" alt="Logo" class="logo-img">
 
-/* Main Layout */
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden; /* ล็อคหน้าจอ */
-  font-family: var(--font);
-  color: var(--text-color);
-  position: relative;
-  background-color: #000;
+        <div class="button-group">
+            <button>
+                PERSON LIST
+            </button>
+            
+            <button>
+                EXPERIENCE
+            </button>
+            
+            <button>
+                MUSIC LIST
+            </button>
+        </div>
 
-  /* --- แก้ไข: ซ้อนภาพ 3 ชั้น (โลโก้ / เงาดำ / พื้นหลัง) --- */
-  background-image: 
-    url('pitbullgang.png'), /* ชั้นที่ 1: โลโก้ (บนสุด) */
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), /* ชั้นที่ 2: เงาดำ */
-    url('pitbull.png'); /* ชั้นที่ 3: พื้นหลัง (ล่างสุด) */
+    </div>
 
-  /* กำหนดขนาด: โลโก้กว้าง 550px / เงาและพื้นหลังเต็มจอ */
-  background-size: 550px auto, cover, cover;
+    <footer>
+        © DESIGNED BY KEN.
+    </footer>
 
-  /* กำหนดตำแหน่ง: โลโก้อยู่กึ่งกลางแต่ขยับขึ้นบน (20%) / ที่เหลืออยู่กลาง */
-  background-position: center 20%, center, center;
-
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* รูปนิ่งเวลาเลื่อน */
-}
-
-/* Light Glow Bottom (แสงฟุ้งด้านล่าง) */
-body::after {
-  content: "";
-  position: fixed;
-  bottom: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 300px;
-  background: radial-gradient(circle at center top, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
-  filter: blur(80px);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* =========================================
-   LOADING SCREEN
-   ========================================= */
-#loading-screen {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  transition: opacity 1s ease;
-}
-#loading-screen.hidden { opacity: 0; pointer-events: none; }
-
-.loader {
-  border: 4px solid rgba(255,255,255,0.1);
-  border-top: 4px solid var(--accent-color);
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
-/* =========================================
-   MAIN CONTENT (BUTTONS)
-   ========================================= */
-
-/* จัดกึ่งกลางหน้าจอ */
-.center-container {
-  position: absolute;
-  top: 50%; 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 10;
-  width: 100%;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-  /* ขยับกล่องปุ่มลงมาหน่อย เพื่อหลบโลโก้ที่อยู่ในพื้นหลัง */
-  margin-top: 100px; 
-}
-
-/* ปุ่มกดสไตล์ Dark Glass */
-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  
-  width: 100%;
-  max-width: 300px; /* ความกว้างปุ่มสูงสุด */
-  padding: 15px 0;
-  margin: 0;
-  
-  font-family: var(--font);
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  
-  background: rgba(0, 0, 0, 0.7); /* พื้นหลังดำโปร่งใส */
-  backdrop-filter: blur(10px);
-  
-  border: 1px solid rgba(255, 255, 255, 0.2); /* ขอบขาวจางๆ */
-  color: #fff;
-  border-radius: 50px; /* ปุ่มมน */
-  
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-/* เอฟเฟกต์ตอนชี้ปุ่ม */
-button:hover {
-  background: var(--accent-color); /* เปลี่ยนเป็นสีแดง */
-  border-color: var(--accent-color);
-  box-shadow: 0 0 40px rgba(255, 77, 77, 0.6); /* เรืองแสง */
-  transform: translateY(-5px) scale(1.05);
-  color: #fff;
-}
-
-button svg {
-  width: 22px;
-  height: 22px;
-  stroke: #fff;
-  transition: transform 0.3s ease;
-}
-
-button:hover svg {
-  transform: translateX(5px) scale(1.2);
-}
-
-/* =========================================
-   ANIMATIONS & EFFECTS
-   ========================================= */
-
-/* เมาส์วงกลมตาม (Circle Follow) */
-#circle {
-  position: fixed;
-  top: 0; left: 0;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background: var(--circle-color);
-  pointer-events: none;
-  filter: blur(60px);
-  transform: translate(-50%, -50%);
-  z-index: 5;
-}
-
-/* Footer */
-footer {
-  position: fixed;
-  bottom: 20px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: rgba(255,255,255,0.4);
-  font-size: 0.8rem;
-  z-index: 5;
-  pointer-events: none;
-  letter-spacing: 1px;
-}
-
-/* =========================================
-   SYSTEM SECURITY
-   ========================================= */
-body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+    <script>
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('loading-screen').classList.add('hidden');
+            }, 1000);
+        }
+    </script>
+</body>
