@@ -3,269 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experience | Pitbull Gang</title>
+  <title>Experience 2026 | Pitbull Gang</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  
   <link rel="stylesheet" href="../style.css" />
   
   <style>
-    /* --- ตั้งค่าเฉพาะหน้านี้ --- */
-    :root {
-      --accent-color: #ff0000;
-      --font-header: 'Black Ops One', cursive;
-      --font-body: 'Kanit', sans-serif;
-    }
-
-    html, body {
-        overflow-y: auto !important;
-        height: auto !important;
-        min-height: 100vh;
-        
-        /* พื้นหลังรูปภาพ */
-        background-color: #000;
-        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../pitbull.png');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-    }
-
-    /* Container */
-    .container {
-      width: 90%;
-      max-width: 900px;
-      margin: 40px auto 0;
-      position: relative;
-      z-index: 2;
-      padding-bottom: 20px;
-    }
-
-    /* --- ส่วนหัวปุ่มกด (Nav Top) --- */
-    .nav-top {
-      display: flex;
-      justify-content: space-between; /* จัดชิดซ้าย-ขวา */
-      align-items: center;
-      margin-bottom: 40px;
-      flex-wrap: wrap; /* มือถือจอเล็กให้ปัดลงมาได้ */
-      gap: 15px;
-    }
-
-    /* สไตล์ปุ่มทั่วไป */
-    .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-family: var(--font-header);
-      letter-spacing: 1px;
-      padding: 12px 25px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-      transition: all 0.3s ease;
-    }
-
-    /* ปุ่ม Back (สีดำ) */
-    .back-btn {
-      background: rgba(0, 0, 0, 0.6);
-    }
-    .back-btn:hover {
-      background: rgba(255, 0, 0, 0.2);
-      border-color: var(--accent-color);
-      box-shadow: 0 0 15px var(--accent-color);
-      transform: translateX(-5px);
-    }
-
-    /* ปุ่ม 2026 (สีแดงเน้น) */
-    .next-btn {
-      background: rgba(255, 0, 0, 0.2); /* พื้นแดงจางๆ */
-      border-color: var(--accent-color);
-    }
-    .next-btn:hover {
-      background: var(--accent-color);
-      color: #000;
-      box-shadow: 0 0 20px var(--accent-color);
-      transform: translateX(5px);
-    }
-
-    /* หัวข้อหน้า */
-    .page-title {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    .page-title h2 {
-      font-family: var(--font-header);
-      font-size: 4rem;
-      text-transform: uppercase;
-      color: #fff;
-      text-shadow: 4px 4px 0px #000, 0 0 25px rgba(255, 0, 0, 0.6);
-      letter-spacing: 3px;
-      margin: 0;
-    }
-    .page-title p {
-      font-family: var(--font-body);
-      color: #ccc;
-      letter-spacing: 1px;
-      margin-top: 5px;
-      font-size: 1.1rem;
-      font-weight: 300;
-    }
-
-    /* --- TIMELINE DESIGN --- */
-    .timeline {
-      position: relative;
-      padding: 20px 0;
-    }
+    /* CSS ชุดเดิม */
+    :root { --accent-color: #ff0000; --font-header: 'Black Ops One', cursive; --font-body: 'Kanit', sans-serif; }
+    html, body { overflow-y: auto !important; height: auto !important; min-height: 100vh; background-color: #000; background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../pitbull.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
+    .container { width: 90%; max-width: 900px; margin: 40px auto 0; position: relative; z-index: 2; padding-bottom: 20px; }
     
-    .timeline::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 20px;
-      height: 100%;
-      width: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 2px;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 50px;
-      padding-left: 60px;
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: 11px;
-      top: 0;
-      width: 22px;
-      height: 22px;
-      background: var(--accent-color);
-      border: 4px solid #000;
-      border-radius: 50%;
-      box-shadow: 0 0 15px var(--accent-color);
-      z-index: 2;
-      transition: transform 0.3s ease;
-    }
-
-    .timeline-content {
-      position: relative;
-      background: rgba(15, 15, 15, 0.9);
-      padding: 25px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      clip-path: polygon(
-        20px 0, 100% 0, 
-        100% calc(100% - 20px), 
-        calc(100% - 20px) 100%, 
-        0 100%, 
-        0 20px
-      );
-      transition: all 0.3s ease;
-      text-align: left;
-    }
+    /* Nav Top */
+    .nav-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 15px; }
+    .nav-btn { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 1.1rem; font-family: var(--font-header); letter-spacing: 1px; padding: 12px 25px; border: 1px solid rgba(255, 255, 255, 0.2); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); transition: all 0.3s ease; }
+    .back-btn { background: rgba(0, 0, 0, 0.6); }
+    .back-btn:hover { background: rgba(255, 0, 0, 0.2); border-color: var(--accent-color); box-shadow: 0 0 15px var(--accent-color); transform: translateX(-5px); }
     
-    .timeline-content::before, .timeline-content::after {
-      content: ''; position: absolute; width: 20px; height: 4px; background: var(--accent-color); transition: 0.3s;
-    }
-    .timeline-content::before { top: 0; left: 0; }
-    .timeline-content::after { bottom: 0; right: 0; }
+    /* ปุ่มดูประวัติเก่า (2025) */
+    .history-btn { background: rgba(255, 0, 0, 0.2); border: 1px solid var(--accent-color); }
+    .history-btn:hover { background: var(--accent-color); color: #000; box-shadow: 0 0 20px var(--accent-color); transform: translateX(-5px); }
 
-    .timeline-item:hover .timeline-content {
-      transform: translateY(-5px);
-      background: rgba(40, 0, 0, 0.3);
-      border-color: var(--accent-color);
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
-    }
-    .timeline-item:hover .timeline-content::before, 
-    .timeline-item:hover .timeline-content::after {
-      width: 100%; height: 100%; background: transparent; border: 2px solid var(--accent-color);
-    }
-    .timeline-item:hover .timeline-dot {
-      transform: scale(1.3);
-      background: #fff;
-    }
+    .page-title { text-align: center; margin-bottom: 60px; }
+    .page-title h2 { font-family: var(--font-header); font-size: 4rem; text-transform: uppercase; color: #fff; text-shadow: 4px 4px 0px #000, 0 0 25px rgba(255, 0, 0, 0.6); letter-spacing: 3px; margin: 0; }
+    .page-title p { font-family: var(--font-body); color: #ccc; letter-spacing: 1px; margin-top: 5px; font-size: 1.1rem; font-weight: 300; }
 
-    .date {
-      display: inline-block;
-      font-family: var(--font-header);
-      font-size: 1.4rem;
-      color: var(--accent-color);
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 5px;
-      width: 100%;
-    }
-
-    .timeline-content h3 {
-      font-family: var(--font-header);
-      font-size: 1.8rem;
-      color: #fff;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
-    }
-
-    .timeline-content ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .timeline-content li {
-      font-family: var(--font-body);
-      font-size: 1.1rem;
-      color: #ddd;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: flex-start;
-    }
-    .timeline-content li::before {
-      content: '>';
-      color: var(--accent-color);
-      font-family: var(--font-header);
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
+    /* Timeline */
+    .timeline { position: relative; padding: 20px 0; }
+    .timeline::before { content: ''; position: absolute; top: 0; left: 20px; height: 100%; width: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); }
+    .timeline-item { position: relative; margin-bottom: 50px; padding-left: 60px; }
+    .timeline-dot { position: absolute; left: 11px; top: 0; width: 22px; height: 22px; background: var(--accent-color); border: 4px solid #000; border-radius: 50%; box-shadow: 0 0 15px var(--accent-color); z-index: 2; transition: transform 0.3s ease; }
+    .timeline-content { position: relative; background: rgba(15, 15, 15, 0.9); padding: 25px; border: 1px solid rgba(255, 255, 255, 0.1); clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px); transition: all 0.3s ease; text-align: left; }
+    .timeline-content::before, .timeline-content::after { content: ''; position: absolute; width: 20px; height: 4px; background: var(--accent-color); transition: 0.3s; }
+    .timeline-content::before { top: 0; left: 0; } .timeline-content::after { bottom: 0; right: 0; }
+    .timeline-item:hover .timeline-content { transform: translateY(-5px); background: rgba(40, 0, 0, 0.3); border-color: var(--accent-color); box-shadow: 0 0 25px rgba(255, 0, 0, 0.2); }
+    .timeline-item:hover .timeline-content::before, .timeline-item:hover .timeline-content::after { width: 100%; height: 100%; background: transparent; border: 2px solid var(--accent-color); }
+    .timeline-item:hover .timeline-dot { transform: scale(1.3); background: #fff; }
+    .date { display: inline-block; font-family: var(--font-header); font-size: 1.4rem; color: var(--accent-color); margin-bottom: 10px; text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); border-bottom: 2px solid rgba(255, 255, 255, 0.1); padding-bottom: 5px; width: 100%; }
+    .timeline-content h3 { font-family: var(--font-header); font-size: 1.8rem; color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
+    .timeline-content ul { margin: 0; padding: 0; list-style: none; }
+    .timeline-content li { font-family: var(--font-body); font-size: 1.1rem; color: #ddd; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px; justify-content: flex-start; }
+    .timeline-content li::before { content: '>'; color: var(--accent-color); font-family: var(--font-header); font-weight: bold; font-size: 1.2rem; }
     .timeline-content li:last-child { border-bottom: none; }
 
-    /* --- Responsive (PC) --- */
     @media (min-width: 768px) {
       .timeline::before { left: 50%; transform: translateX(-50%); }
       .timeline-item { width: 50%; margin-left: 0; padding-left: 0; }
-      
       .timeline-item:nth-child(odd) { padding-right: 50px; text-align: right; }
       .timeline-item:nth-child(odd) .timeline-content { text-align: right; }
-      .timeline-item:nth-child(odd) .timeline-content ul li {
-          justify-content: flex-end; 
-          flex-direction: row; 
-      }
+      .timeline-item:nth-child(odd) .timeline-content ul li { justify-content: flex-end; flex-direction: row; }
       .timeline-item:nth-child(odd) .timeline-content::before { left: auto; right: 0; }
       .timeline-item:nth-child(odd) .timeline-content::after { right: auto; left: 0; }
-      
       .timeline-item:nth-child(even) { margin-left: 50%; padding-left: 50px; text-align: left; }
       .timeline-item:nth-child(odd) .timeline-dot { left: auto; right: -11px; }
       .timeline-item:nth-child(even) .timeline-dot { left: -11px; }
     }
-
-    footer { 
-        position: relative !important;
-        bottom: auto !important;
-        width: 100%;
-        text-align: center; 
-        margin-top: 80px;   
-        padding-bottom: 50px; 
-        color: rgba(255,255,255,0.4); 
-        letter-spacing: 2px;
-        font-family: var(--font-header);
-        font-size: 0.9rem;
-        clear: both;
-    }
+    footer { position: relative !important; bottom: auto !important; width: 100%; text-align: center; margin-top: 80px; padding-bottom: 50px; color: rgba(255,255,255,0.4); letter-spacing: 2px; font-family: var(--font-header); font-size: 0.9rem; clear: both; }
   </style>
 </head>
 <body>
@@ -277,13 +71,14 @@
           <i class='bx bx-chevrons-left'></i> BACK TO HOME
         </a>
 
-        <a href="2026.html" class="nav-btn next-btn">
-          2026 <i class='bx bx-chevrons-right'></i>
+        <a href="2025.html" class="nav-btn history-btn">
+          <i class='bx bx-history'></i> 2025 HISTORY
         </a>
     </div>
 
     <div class="page-title">
-      <h2>Experience</h2>
+      <h2>Experience 2026</h2>
+      <p>เส้นทางปีปัจจุบัน</p>
     </div>
 
     <div class="timeline">
@@ -291,63 +86,17 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <span class="date">DECEMBER 2025</span>
+          <span class="date">JANUARY 2026</span>
           <h3>STORY</h3>
           <ul>
-            <li>PITBULL 5 : 0 ETERNITY</li>
-            <li>PITBULL 7 : 1 OChundred</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="date">NOVEMBER 2025</span>
-          <h3>STORY</h3>
-          <ul>
-            <li>PITBULL 5 : 1 Be Bare Bear</li>
-            <li>PITBULL 5 : 0 ONLAWENG</li>
-            <li>PITBULL 8 : 0 SUCKSEED</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="date">OCTOBER 2025</span>
-          <h3>STORY</h3>
-          <ul>
-            <li>PITBULL 5 : 2 REZET1</li>
-            <li>PITBULL 5 : 0 ATHENS</li>
-            <li>PITBULL 5 : 0 Gilded Fangs</li>
-            <li>PITBULL 6 : 0 LNWROBLOX</li>
-            <li>PITBULL 5 : 0 ATHENS</li>
-            <li>PITBULL 5 : 0 SANG GA MOY</li>
-            <li>PITBULL 5 : 0 INNOCENT</li>
-            <li>PITBULL 5 : 0 HIGH LEVEL</li>
-            <li>PITBULL 10 : 3 SANG GA MOY</li>
-            <li>PITBULL 10 : 1 HIGH TIER</li>
-            <li>PITBULL 5 : 0 WHYCRY</li>
-            <li>PITBULL 5 : 0 CONFIDENT</li>
+            <li>Coming Soon...</li>
           </ul>
         </div>
       </div>
       
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="date">SEPTEMBER 2025</span>
-          <h3>STORY</h3>
-          <ul>
-            <li>PITBULL 2 : 5 XD GANG</li>
-            <li>PITBULL 4 : 5 FLOYEN</li>
-          </ul>
-        </div>
-      </div>
-      
-    </div> <footer>
+    </div>
+
+    <footer>
         <p>© DESIGNED BY KEN.</p>
     </footer>
   </div>
