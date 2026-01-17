@@ -93,24 +93,24 @@
       content: '';
       position: absolute;
       top: 0;
-      left: 20px; /* มือถือ: ชิดซ้าย */
+      left: 20px;
       height: 100%;
       width: 4px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 2px;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); /* เรืองแสงนิดๆ */
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
     }
 
     .timeline-item {
       position: relative;
       margin-bottom: 50px;
-      padding-left: 60px; /* เว้นที่ให้จุดและเส้น */
+      padding-left: 60px;
     }
 
     /* จุดกลม (Dot) */
     .timeline-dot {
       position: absolute;
-      left: 11px; /* กึ่งกลางเส้น */
+      left: 11px;
       top: 0;
       width: 22px;
       height: 22px;
@@ -136,6 +136,7 @@
         0 20px
       );
       transition: all 0.3s ease;
+      text-align: left; /* บังคับชิดซ้ายเสมอเพื่อความสวยงามของ List */
     }
     
     /* เส้นตกแต่งมุมการ์ด */
@@ -198,12 +199,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      justify-content: flex-start; /* จัดลูกศรอยู่หน้า */
     }
     .timeline-content li::before {
       content: '>';
       color: var(--accent-color);
       font-family: var(--font-header);
       font-weight: bold;
+      font-size: 1.2rem;
     }
     .timeline-content li:last-child {
       border-bottom: none;
@@ -220,7 +223,20 @@
         padding-right: 50px; 
         text-align: right; 
       }
-      .timeline-item:nth-child(odd) .timeline-content::before { left: auto; right: 0; } /* ย้ายมุมตัดไปขวา */
+      .timeline-item:nth-child(odd) .timeline-content {
+          text-align: right; /* วันที่และหัวข้อชิดขวา */
+      }
+      /* แต่ List ขอให้ชิดซ้ายเหมือนเดิมจะได้อ่านง่าย */
+      .timeline-item:nth-child(odd) .timeline-content ul li {
+          justify-content: flex-end; /* ให้ List ในกล่องซ้ายชิดขวาตามกล่อง */
+          flex-direction: row; /* คงลูกศรไว้ด้านหน้าข้อความเหมือนเดิม (> Text) */
+      }
+      /* แก้ไข: ย้ายลูกศรไปอยู่หลังข้อความเฉพาะกล่องซ้าย เพื่อความสวยงามแบบสมมาตร หรือจะคงไว้ข้างหน้าก็ได้ */
+      /* ถ้าอยากให้ลูกศรอยู่หน้าเสมอ (> Text) ให้ใช้ code ด้านบน แต่ถ้าอยากให้ Text < ให้ใช้ row-reverse */
+      /* ตามที่คุณขอ "เอาลูกศรมาอยู่ข้างหน้า" ผมจะคง row ปกติไว้ครับ */
+      
+
+      .timeline-item:nth-child(odd) .timeline-content::before { left: auto; right: 0; }
       .timeline-item:nth-child(odd) .timeline-content::after { right: auto; left: 0; }
       
       /* กล่องขวา */
@@ -233,12 +249,6 @@
       /* จัดจุด (Dot) */
       .timeline-item:nth-child(odd) .timeline-dot { left: auto; right: -11px; }
       .timeline-item:nth-child(even) .timeline-dot { left: -11px; }
-      
-      /* จัด list ให้ชิดขวาสำหรับกล่องซ้าย */
-      .timeline-item:nth-child(odd) .timeline-content ul li {
-        justify-content: flex-end; /* ชิดขวา */
-        flex-direction: row-reverse; /* สลับลูกศรไปอยู่หลัง */
-      }
     }
 
     /* Footer Fix */
