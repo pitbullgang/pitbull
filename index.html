@@ -5,6 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pitbull Gang - Official</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* สไตล์ของเม็ดฝน (ที่เป็นโลโก้) */
+    .pitbull-rain {
+      position: fixed;
+      top: -100px;       /* เริ่มต้นเหนือจอ */
+      z-index: 9999;     /* อยู่บนสุด */
+      pointer-events: none; /* คลิาทะลุได้ ไม่บังปุ่ม */
+      background-image: url('pitbullice.png'); /* รูปที่ใช้ */
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      /* กลับสีดำเป็นขาว (invert) + ใส่เงาเรืองแสง */
+      filter: invert(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)); 
+      animation: fall linear forwards;
+    }
+
+    /* อนิเมชั่นการร่วง */
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(20deg); /* ร่วงเลยขอบล่างจอ */
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -46,6 +73,7 @@
   </footer>
 
   <script>
+    // 1. Script สำหรับ Loading Screen
     window.onload = () => {
       setTimeout(() => {
         document.getElementById('loading-screen').style.opacity = '0';
@@ -54,6 +82,37 @@
         }, 500);
       }, 800);
     }
+
+    // 2. Script สำหรับเอฟเฟกต์ฝนตก (Pitbull Rain)
+    function createPitbullRain() {
+      const rain = document.createElement('div');
+      rain.classList.add('pitbull-rain');
+
+      // สุ่มตำแหน่งแนวนอน (0% ถึง 100% ของจอ)
+      rain.style.left = Math.random() * 100 + "vw";
+
+      // สุ่มความเร็ว (2 ถึง 5 วินาที)
+      const duration = Math.random() * 3 + 2;
+      rain.style.animationDuration = duration + "s";
+
+      // สุ่มขนาด (40px ถึง 90px)
+      const size = Math.random() * 50 + 40; 
+      rain.style.width = size + "px";
+      rain.style.height = (size / 2) + "px"; // ปรับสัดส่วนตามรูปโลโก้
+
+      // สุ่มความโปร่งแสง
+      rain.style.opacity = Math.random() * 0.5 + 0.3;
+
+      document.body.appendChild(rain);
+
+      // ลบ element เมื่อตกถึงพื้น (เพื่อไม่ให้เว็บอืด)
+      setTimeout(() => {
+        rain.remove();
+      }, duration * 1000);
+    }
+
+    // สร้างฝนใหม่ทุกๆ 300ms (ปรับเลขน้อยลง = ตกหนักขึ้น)
+    setInterval(createPitbullRain, 300);
   </script>
 
 </body>
