@@ -1,7 +1,7 @@
 [
   {
     "name": "ARPO",
-    "permission": "leader",
+    "permission": "sup-leader",
     "image": ""
   },
   {
@@ -13,7 +13,7 @@
   {
     "name": "XETOD",
     "facebook": "https://www.facebook.com/Xetod.Parangsang",
-    "permission": "leader",
+    "permission": "sup-leader",
     "image": ""
   },
   {
@@ -38,7 +38,7 @@
   },
   {
     "name": "PANDA",
-    "permission": "leader",
+    "permission": "sup-leader",
     "image": ""
   },
   {
@@ -53,7 +53,7 @@
   },
   {
     "name": "AUTSWIN",
-    "permission": "leader",
+    "permission": "sup-leader",
     "image": ""
   },
   {
@@ -69,12 +69,6 @@
   },
   {
     "name": "MARCUS",
-    "permission": "member",
-    "image": ""
-  },
-  {
-    "name": "SEHAI",
-    "facebook": "https://www.facebook.com/tony.mansun",
     "permission": "member",
     "image": ""
   },
@@ -123,6 +117,7 @@
   "permission": "sup-leader"
   }  
 ]
+
 
 
 
