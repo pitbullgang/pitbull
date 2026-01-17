@@ -3,117 +3,282 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experience 2026 | Pitbull Gang</title>
+  <title>Person List | Pitbull Gang</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Kanit:wght@400;600;800&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  
   <link rel="stylesheet" href="../style.css" />
   
   <style>
-    :root { --accent-color: #ff0000; --font-header: 'Black Ops One', cursive; --font-body: 'Kanit', sans-serif; }
-    html, body { overflow-y: auto !important; height: auto !important; min-height: 100vh; background-color: #000; background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../pitbull.png'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; }
-    
-    /* --- แก้ไขตำแหน่ง Container ดึงขึ้นบนสุด --- */
-    .container { 
-        width: 90%; 
-        max-width: 900px; 
-        margin: 0 auto; /* เอา margin ด้านบนออก */
-        padding-top: 15px; /* เว้นระยะจากขอบบนนิดเดียวพอ */
-        position: relative; 
-        z-index: 2; 
-        padding-bottom: 20px; 
-    }
-    
-    .nav-top { 
-        display: flex; 
-        justify-content: space-between; 
-        align-items: center; 
-        margin-bottom: 20px; 
-        flex-wrap: wrap; 
-        gap: 15px; 
+    /* --- ตั้งค่าเฉพาะหน้านี้ --- */
+    :root {
+      --accent-color: #ff0000;
+      --card-bg: rgba(0, 0, 0, 0.8);
     }
 
-    .nav-btn { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 1.1rem; font-family: var(--font-header); letter-spacing: 1px; padding: 12px 25px; border: 1px solid rgba(255, 255, 255, 0.2); clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); transition: all 0.3s ease; }
-    .back-btn { background: rgba(0, 0, 0, 0.6); }
-    .back-btn:hover { background: rgba(255, 0, 0, 0.2); border-color: var(--accent-color); box-shadow: 0 0 15px var(--accent-color); transform: translateX(-5px); }
-    
-    .history-btn { background: rgba(255, 0, 0, 0.2); border: 1px solid var(--accent-color); }
-    .history-btn:hover { background: var(--accent-color); color: #000; box-shadow: 0 0 20px var(--accent-color); transform: translateX(-5px); }
-
-    .page-title { text-align: center; margin-bottom: 60px; }
-    .page-title h2 { font-family: var(--font-header); font-size: 4rem; text-transform: uppercase; color: #fff; text-shadow: 4px 4px 0px #000, 0 0 25px rgba(255, 0, 0, 0.6); letter-spacing: 3px; margin: 0; }
-    .page-title p { font-family: var(--font-body); color: #ccc; letter-spacing: 1px; margin-top: 5px; font-size: 1.1rem; font-weight: 300; }
-
-    /* Timeline CSS */
-    .timeline { position: relative; padding: 20px 0; }
-    .timeline::before { content: ''; position: absolute; top: 0; left: 20px; height: 100%; width: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); }
-    .timeline-item { position: relative; margin-bottom: 50px; padding-left: 60px; }
-    .timeline-dot { position: absolute; left: 11px; top: 0; width: 22px; height: 22px; background: var(--accent-color); border: 4px solid #000; border-radius: 50%; box-shadow: 0 0 15px var(--accent-color); z-index: 2; transition: transform 0.3s ease; }
-    .timeline-content { position: relative; background: rgba(15, 15, 15, 0.9); padding: 25px; border: 1px solid rgba(255, 255, 255, 0.1); clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px); transition: all 0.3s ease; text-align: left; }
-    .timeline-content::before, .timeline-content::after { content: ''; position: absolute; width: 20px; height: 4px; background: var(--accent-color); transition: 0.3s; }
-    .timeline-content::before { top: 0; left: 0; } .timeline-content::after { bottom: 0; right: 0; }
-    .timeline-item:hover .timeline-content { transform: translateY(-5px); background: rgba(40, 0, 0, 0.3); border-color: var(--accent-color); box-shadow: 0 0 25px rgba(255, 0, 0, 0.2); }
-    .timeline-item:hover .timeline-content::before, .timeline-item:hover .timeline-content::after { width: 100%; height: 100%; background: transparent; border: 2px solid var(--accent-color); }
-    .timeline-item:hover .timeline-dot { transform: scale(1.3); background: #fff; }
-    .date { display: inline-block; font-family: var(--font-header); font-size: 1.4rem; color: var(--accent-color); margin-bottom: 10px; text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); border-bottom: 2px solid rgba(255, 255, 255, 0.1); padding-bottom: 5px; width: 100%; }
-    .timeline-content h3 { font-family: var(--font-header); font-size: 1.8rem; color: #fff; margin-bottom: 15px; letter-spacing: 1px; }
-    .timeline-content ul { margin: 0; padding: 0; list-style: none; }
-    .timeline-content li { font-family: var(--font-body); font-size: 1.1rem; color: #ddd; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 10px; justify-content: flex-start; }
-    .timeline-content li::before { content: '>'; color: var(--accent-color); font-family: var(--font-header); font-weight: bold; font-size: 1.2rem; }
-    .timeline-content li:last-child { border-bottom: none; }
-
-    @media (min-width: 768px) {
-      .timeline::before { left: 50%; transform: translateX(-50%); }
-      .timeline-item { width: 50%; margin-left: 0; padding-left: 0; }
-      .timeline-item:nth-child(odd) { padding-right: 50px; text-align: right; }
-      .timeline-item:nth-child(odd) .timeline-content { text-align: right; }
-      .timeline-item:nth-child(odd) .timeline-content ul li { justify-content: flex-end; flex-direction: row; }
-      .timeline-item:nth-child(odd) .timeline-content::before { left: auto; right: 0; }
-      .timeline-item:nth-child(odd) .timeline-content::after { right: auto; left: 0; }
-      .timeline-item:nth-child(even) { margin-left: 50%; padding-left: 50px; text-align: left; }
-      .timeline-item:nth-child(odd) .timeline-dot { left: auto; right: -11px; }
-      .timeline-item:nth-child(even) .timeline-dot { left: -11px; }
+    html, body {
+        overflow-y: auto !important;
+        height: auto !important;
+        min-height: 100vh;
+        background-color: #000;
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../pitbull.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
     }
-    footer { position: relative !important; bottom: auto !important; width: 100%; text-align: center; margin-top: 80px; padding-bottom: 50px; color: rgba(255,255,255,0.4); letter-spacing: 2px; font-family: var(--font-header); font-size: 0.9rem; clear: both; }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto 0;
+      position: relative;
+      z-index: 2;
+      padding-bottom: 20px;
+    }
+
+    /* ปุ่ม Back */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-family: 'Black Ops One', cursive;
+      margin-bottom: 30px;
+      padding: 12px 25px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      background: rgba(255, 0, 0, 0.2);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 15px var(--accent-color);
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .page-title h2 {
+      font-family: 'Black Ops One', cursive;
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      letter-spacing: 3px;
+      margin: 0;
+    }
+    
+    .search-box {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 60px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 15px 50px 15px 20px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #333;
+      color: #fff;
+      font-size: 1.2rem;
+      font-family: 'Kanit', sans-serif;
+      outline: none;
+      clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+      transition: all 0.3s ease;
+    }
+    .search-box input:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    }
+    .search-box i {
+      position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 1.5rem;
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex; align-items: center; gap: 15px;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+      margin-top: 40px; 
+    }
+    .section-header h2 {
+      font-family: 'Black Ops One', cursive;
+      font-size: 2rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* --- LAYOUT CONFIGURATION --- */
+    
+    /* 1. สำหรับ Sup Leader & Member: ใช้ Grid ปกติ */
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    /* 2. สำหรับ LEADER เท่านั้น: ใช้ Flex เพื่อจัดกึ่งกลาง */
+    #leaderList {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    /* --- แก้ไขตรงนี้: ปรับขนาดการ์ดเฉพาะของ LEADER ให้เล็กลง --- */
+    #leaderList .name-card {
+        width: auto; /* ให้ความกว้างพอดีกับเนื้อหา */
+        min-width: 180px; /* กว้างขั้นต่ำ */
+        max-width: 200px; /* จำกัดความกว้างสูงสุดให้เล็กลง (จากเดิม 250px) */
+        padding: 12px 10px; /* ลด padding บนล่างลงเล็กน้อย (จากเดิม 15px) */
+    }
+
+    /* Card Design (ดีไซน์มาตรฐานสำหรับการ์ดทั่วไป) */
+    .name-card {
+      position: relative;
+      background: rgba(20, 20, 20, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px 10px;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    }
+    .name-card::before, .name-card::after {
+      content: ''; position: absolute; width: 10px; height: 2px; background: var(--accent-color); transition: 0.3s;
+    }
+    .name-card::before { top: 0; left: 0; }
+    .name-card::after { bottom: 0; right: 0; }
+
+    .name-card:hover {
+      transform: translateY(-3px) scale(1.02);
+      background: rgba(40, 0, 0, 0.6);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    }
+    .name-card:hover::before, .name-card:hover::after {
+      width: 100%; height: 100%; background: transparent; border: 2px solid var(--accent-color);
+    }
+
+    .name-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+      display: flex; justify-content: center; align-items: center; gap: 6px;
+      z-index: 2; position: relative;
+    }
+
+    /* Icon Styles */
+    .crown-icon { font-size: 1.2rem; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
+    .gold { color: #ffd700; animation: floatIcon 2s ease-in-out infinite; } 
+    .silver { color: #e0e0e0; animation: floatIcon 3s ease-in-out infinite; } 
+    .bronze { color: #cd7f32; animation: floatIcon 4s ease-in-out infinite; } 
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    footer { 
+        position: relative !important;
+        bottom: auto !important;
+        width: 100%;
+        text-align: center; 
+        margin-top: 60px;   
+        padding-bottom: 40px; 
+        color: rgba(255,255,255,0.3); 
+        letter-spacing: 2px;
+        clear: both;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    
-    <div class="nav-top">
-        <a href="../" class="nav-btn back-btn">
-          <i class='bx bx-chevrons-left'></i> BACK TO HOME
-        </a>
-
-        <a href="2025.html" class="nav-btn history-btn">
-          <i class='bx bx-history'></i> 2025 HISTORY
-        </a>
-    </div>
+    <a href="../" class="back-btn"><i class='bx bx-chevrons-left'></i> BACK TO HOME</a>
 
     <div class="page-title">
-      <h2>Experience 2026</h2>
-      <p>เส้นทางปีปัจจุบัน</p>
+      <h2>PERSON LIST</h2>
     </div>
 
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="date">JANUARY 2026</span>
-          <h3>STORY</h3>
-          <ul>
-            <li>PITBULL 7 : 2 WARMLIGHT</li>
-          </ul>
-        </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="SEARCH MEMBER NAME...">
+      <i class='bx bx-search'></i>
+    </div>
+
+    <section>
+      <div class="section-header">
+        <h2 style="color: #ffd700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);">LEADER</h2>
       </div>
-    </div>
+      <div class="list-grid" id="leaderList"></div>
+    </section>
 
-    <footer>
-        <p>© DESIGNED BY KEN.</p>
-    </footer>
+    <section>
+      <div class="section-header">
+        <h2 style="color: #ff0000; text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);">SUP LEADER</h2>
+      </div>
+      <div class="list-grid" id="supLeaderList"></div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2 style="color: #ffffff;">MEMBER</h2>
+      </div>
+      <div class="list-grid" id="memberList"></div>
+    </section>
+
+    <footer><p>© DESIGNED BY KEN.</p></footer>
   </div>
 
-  <script src="../script.js"></script>
+  <script>
+    fetch("../person.json")
+      .then(res => res.json())
+      .then(data => {
+        const leaderList = document.getElementById("leaderList");
+        const supLeaderList = document.getElementById("supLeaderList");
+        const memberList = document.getElementById("memberList");
+
+        const leaders = data.filter(p => p.permission === "leader");
+        const supLeaders = data.filter(p => p.permission === "sup-leader");
+        const members = data.filter(p => p.permission === "member");
+
+        function createNameCard(person, rank="member") {
+          const div = document.createElement("div");
+          div.className = "name-card";
+          
+          let iconHtml = '';
+          if (rank === 'leader') {
+             iconHtml = `<i class='bx bxs-crown crown-icon gold'></i>`; 
+          } else if (rank === 'sup-leader') {
+             iconHtml = `<i class='bx bxs-star crown-icon silver'></i>`; 
+          } else {
+             iconHtml = `<i class='bx bxs-user crown-icon bronze'></i>`; 
+          }
+          
+          div.innerHTML = `<h3>${iconHtml} ${person.name}</h3>`;
+          return div;
+        }
+
+        leaders.forEach(p => leaderList.appendChild(createNameCard(p, 'leader')));
+        supLeaders.forEach(p => supLeaderList.appendChild(createNameCard(p, 'sup-leader')));
+        members.forEach(p => memberList.appendChild(createNameCard(p, 'member')));
+
+        document.getElementById("searchInput").addEventListener("input", e => {
+          const val = e.target.value.toLowerCase();
+          document.querySelectorAll(".name-card").forEach(card => {
+            const name = card.innerText.toLowerCase();
+            card.style.display = name.includes(val) ? "flex" : "none";
+          });
+        });
+      });
+  </script>
+
 </body>
 </html>
