@@ -117,7 +117,11 @@
     "facebook": "https://www.facebook.com/lukchin.cry",
     "permission": "member",
     "image": ""
-  }
+  },
+  {
+  "name": "KEN",
+  "permission": "sup-leader"
+  }  
 ]
 
 
