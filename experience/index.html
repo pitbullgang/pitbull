@@ -23,12 +23,12 @@
         height: auto !important;
         min-height: 100vh;
         
-        /* --- แก้ไขพื้นหลัง: ใช้รูปภาพแทนวิดีโอ --- */
+        /* พื้นหลังรูปภาพ */
         background-color: #000;
-        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../pitbull.png'); /* ใช้รูปเดียวกับหน้าแรก */
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../pitbull.png');
         background-size: cover;
         background-position: center;
-        background-attachment: fixed; /* ให้พื้นหลังนิ่งเวลาเลื่อน */
+        background-attachment: fixed;
         background-repeat: no-repeat;
     }
 
@@ -42,8 +42,18 @@
       padding-bottom: 20px;
     }
 
-    /* ปุ่ม Back */
-    .back-btn {
+    /* --- ส่วนหัวปุ่มกด (Nav Top) --- */
+    .nav-top {
+      display: flex;
+      justify-content: space-between; /* จัดชิดซ้าย-ขวา */
+      align-items: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap; /* มือถือจอเล็กให้ปัดลงมาได้ */
+      gap: 15px;
+    }
+
+    /* สไตล์ปุ่มทั่วไป */
+    .nav-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -52,18 +62,33 @@
       font-size: 1.1rem;
       font-family: var(--font-header);
       letter-spacing: 1px;
-      margin-bottom: 30px;
       padding: 12px 25px;
-      background: rgba(0, 0, 0, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.2);
       clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
       transition: all 0.3s ease;
+    }
+
+    /* ปุ่ม Back (สีดำ) */
+    .back-btn {
+      background: rgba(0, 0, 0, 0.6);
     }
     .back-btn:hover {
       background: rgba(255, 0, 0, 0.2);
       border-color: var(--accent-color);
       box-shadow: 0 0 15px var(--accent-color);
       transform: translateX(-5px);
+    }
+
+    /* ปุ่ม 2026 (สีแดงเน้น) */
+    .next-btn {
+      background: rgba(255, 0, 0, 0.2); /* พื้นแดงจางๆ */
+      border-color: var(--accent-color);
+    }
+    .next-btn:hover {
+      background: var(--accent-color);
+      color: #000;
+      box-shadow: 0 0 20px var(--accent-color);
+      transform: translateX(5px);
     }
 
     /* หัวข้อหน้า */
@@ -95,7 +120,6 @@
       padding: 20px 0;
     }
     
-    /* เส้นแกนกลาง */
     .timeline::before {
       content: '';
       position: absolute;
@@ -114,7 +138,6 @@
       padding-left: 60px;
     }
 
-    /* จุดกลม (Dot) */
     .timeline-dot {
       position: absolute;
       left: 11px;
@@ -129,7 +152,6 @@
       transition: transform 0.3s ease;
     }
 
-    /* กล่องข้อความ (Card) */
     .timeline-content {
       position: relative;
       background: rgba(15, 15, 15, 0.9);
@@ -146,14 +168,12 @@
       text-align: left;
     }
     
-    /* เส้นตกแต่งมุมการ์ด */
     .timeline-content::before, .timeline-content::after {
       content: ''; position: absolute; width: 20px; height: 4px; background: var(--accent-color); transition: 0.3s;
     }
     .timeline-content::before { top: 0; left: 0; }
     .timeline-content::after { bottom: 0; right: 0; }
 
-    /* Hover Effect */
     .timeline-item:hover .timeline-content {
       transform: translateY(-5px);
       background: rgba(40, 0, 0, 0.3);
@@ -169,7 +189,6 @@
       background: #fff;
     }
 
-    /* วันที่ */
     .date {
       display: inline-block;
       font-family: var(--font-header);
@@ -182,7 +201,6 @@
       width: 100%;
     }
 
-    /* หัวข้อ Story */
     .timeline-content h3 {
       font-family: var(--font-header);
       font-size: 1.8rem;
@@ -191,7 +209,6 @@
       letter-spacing: 1px;
     }
 
-    /* รายการ (List) */
     .timeline-content ul {
       margin: 0;
       padding: 0;
@@ -215,45 +232,27 @@
       font-weight: bold;
       font-size: 1.2rem;
     }
-    .timeline-content li:last-child {
-      border-bottom: none;
-    }
+    .timeline-content li:last-child { border-bottom: none; }
 
     /* --- Responsive (PC) --- */
     @media (min-width: 768px) {
       .timeline::before { left: 50%; transform: translateX(-50%); }
-      
       .timeline-item { width: 50%; margin-left: 0; padding-left: 0; }
       
-      /* กล่องซ้าย */
-      .timeline-item:nth-child(odd) { 
-        padding-right: 50px; 
-        text-align: right; 
-      }
-      .timeline-item:nth-child(odd) .timeline-content {
-          text-align: right; 
-      }
+      .timeline-item:nth-child(odd) { padding-right: 50px; text-align: right; }
+      .timeline-item:nth-child(odd) .timeline-content { text-align: right; }
       .timeline-item:nth-child(odd) .timeline-content ul li {
           justify-content: flex-end; 
           flex-direction: row; 
       }
-
       .timeline-item:nth-child(odd) .timeline-content::before { left: auto; right: 0; }
       .timeline-item:nth-child(odd) .timeline-content::after { right: auto; left: 0; }
       
-      /* กล่องขวา */
-      .timeline-item:nth-child(even) { 
-        margin-left: 50%; 
-        padding-left: 50px; 
-        text-align: left;
-      }
-
-      /* จัดจุด (Dot) */
+      .timeline-item:nth-child(even) { margin-left: 50%; padding-left: 50px; text-align: left; }
       .timeline-item:nth-child(odd) .timeline-dot { left: auto; right: -11px; }
       .timeline-item:nth-child(even) .timeline-dot { left: -11px; }
     }
 
-    /* Footer Fix */
     footer { 
         position: relative !important;
         bottom: auto !important;
@@ -273,9 +272,15 @@
 
   <div class="container">
     
-    <a href="../" class="back-btn">
-      <i class='bx bx-chevrons-left'></i> Back to Home
-    </a>
+    <div class="nav-top">
+        <a href="../" class="nav-btn back-btn">
+          <i class='bx bx-chevrons-left'></i> BACK TO HOME
+        </a>
+
+        <a href="2026.html" class="nav-btn next-btn">
+          2026 <i class='bx bx-chevrons-right'></i>
+        </a>
+    </div>
 
     <div class="page-title">
       <h2>Experience</h2>
