@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Person List | Pitbull Gang</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Kanit:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Kanit:wght@400;600;800&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   
   <link rel="stylesheet" href="../style.css" />
@@ -14,8 +14,7 @@
     /* --- ตั้งค่าเฉพาะหน้านี้ --- */
     :root {
       --accent-color: #ff0000;
-      /* เปลี่ยนฟอนต์หลักเป็น Chakra Petch */
-      --font-main: 'Chakra Petch', sans-serif;
+      --card-bg: rgba(0, 0, 0, 0.8);
     }
 
     html, body {
@@ -41,10 +40,8 @@
       gap: 10px;
       color: #fff;
       text-decoration: none;
-      font-size: 1.1rem;
-      font-family: var(--font-main);
-      font-weight: 700;
-      letter-spacing: 1px;
+      font-size: 1.2rem;
+      font-family: 'Black Ops One', cursive;
       margin-bottom: 30px;
       padding: 12px 25px;
       background: rgba(0, 0, 0, 0.6);
@@ -58,31 +55,20 @@
       box-shadow: 0 0 15px var(--accent-color);
     }
 
-    /* หัวข้อหน้า */
     .page-title {
       text-align: center;
       margin-bottom: 50px;
     }
     .page-title h2 {
-      font-family: var(--font-main);
-      font-size: 4rem; /* ขยายให้ใหญ่สะใจ */
-      font-weight: 700;
+      font-family: 'Black Ops One', cursive;
+      font-size: 3.5rem;
       text-transform: uppercase;
       color: #fff;
-      text-shadow: 4px 4px 0px #000, 0 0 20px rgba(255, 0, 0, 0.6); /* เพิ่มขอบดำให้ดูคม */
+      text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
       letter-spacing: 3px;
       margin: 0;
-      font-style: italic; /* เอียงนิดๆ ให้ดูซิ่ง */
-    }
-    .page-title p {
-      font-family: 'Kanit', sans-serif;
-      color: #ccc;
-      letter-spacing: 1px;
-      margin-top: 5px;
-      font-size: 1.1rem;
     }
     
-    /* Search Box */
     .search-box {
       width: 100%;
       max-width: 600px;
@@ -91,26 +77,19 @@
     }
     .search-box input {
       width: 100%;
-      padding: 15px 50px 15px 25px;
+      padding: 15px 50px 15px 20px;
       background: rgba(0, 0, 0, 0.8);
       border: 2px solid #333;
       color: #fff;
       font-size: 1.2rem;
-      font-family: var(--font-main);
-      font-weight: 600;
+      font-family: 'Kanit', sans-serif;
       outline: none;
       clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
       transition: all 0.3s ease;
-      letter-spacing: 1px;
     }
     .search-box input:focus {
       border-color: var(--accent-color);
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-    }
-    .search-box input::placeholder {
-        font-family: var(--font-main);
-        font-weight: 400;
-        opacity: 0.6;
     }
     .search-box i {
       position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 1.5rem;
@@ -120,70 +99,65 @@
     .section-header {
       display: flex; align-items: center; gap: 15px;
       margin-bottom: 30px;
-      border-bottom: 3px solid #333;
+      border-bottom: 2px solid #333;
       padding-bottom: 10px;
-      margin-top: 50px; 
+      margin-top: 40px; 
     }
     .section-header h2 {
-      font-family: var(--font-main);
-      font-size: 2.5rem;
-      font-weight: 700;
+      font-family: 'Black Ops One', cursive;
+      font-size: 2rem;
       color: #fff;
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-style: italic;
     }
     .badge-count {
+      background: var(--accent-color);
       color: #000;
-      font-family: var(--font-main);
-      font-weight: 700;
-      padding: 4px 14px;
-      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 2px 12px;
+      font-size: 1rem;
       clip-path: polygon(5px 0, 100% 0, 100% 100%, 0 100%, 0 5px);
     }
 
     .list-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
     }
 
     /* Card Design */
     .name-card {
       position: relative;
-      background: rgba(15, 15, 15, 0.9);
+      background: rgba(20, 20, 20, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 22px 10px;
+      padding: 25px 15px;
       text-align: center;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
     }
     .name-card::before, .name-card::after {
-      content: ''; position: absolute; width: 25px; height: 5px; background: var(--accent-color); transition: 0.3s;
+      content: ''; position: absolute; width: 15px; height: 3px; background: var(--accent-color); transition: 0.3s;
     }
     .name-card::before { top: 0; left: 0; }
     .name-card::after { bottom: 0; right: 0; }
 
     .name-card:hover {
-      transform: translateY(-5px);
-      background: rgba(40, 0, 0, 0.4);
+      transform: translateY(-5px) scale(1.02);
+      background: rgba(40, 0, 0, 0.6);
       border-color: var(--accent-color);
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
     }
     .name-card:hover::before, .name-card:hover::after {
       width: 100%; height: 100%; background: transparent; border: 2px solid var(--accent-color);
     }
 
     .name-card h3 {
-      font-family: var(--font-main);
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 600;
       color: #fff;
       margin: 0;
-      display: flex; justify-content: center; align-items: center; gap: 10px;
+      display: flex; justify-content: center; align-items: center; gap: 8px;
       z-index: 2; position: relative;
-      letter-spacing: 1px;
-      text-transform: uppercase;
     }
 
     /* Icon Styles */
@@ -191,11 +165,12 @@
     
     .gold { color: #ffd700; animation: floatIcon 2s ease-in-out infinite; } 
     .silver { color: #e0e0e0; animation: floatIcon 3s ease-in-out infinite; } 
+    /* เพิ่ม Animation ให้สีทองแดง */
     .bronze { color: #cd7f32; animation: floatIcon 4s ease-in-out infinite; } 
 
     @keyframes floatIcon {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
+      50% { transform: translateY(-5px); }
     }
 
     /* Footer Fix */
@@ -206,10 +181,8 @@
         text-align: center; 
         margin-top: 80px;   
         padding-bottom: 50px; 
-        color: rgba(255,255,255,0.4); 
+        color: rgba(255,255,255,0.3); 
         letter-spacing: 2px;
-        font-family: var(--font-main);
-        font-size: 0.9rem;
         clear: both;
     }
   </style>
@@ -236,7 +209,7 @@
 
     <section>
       <div class="section-header">
-        <h2 style="color: #ffd700; text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);">LEADER</h2>
+        <h2 style="color: #ffd700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);">LEADER</h2>
         <span class="badge-count" id="leaderCount" style="background: #ffd700;">0</span>
       </div>
       <div class="list-grid" id="leaderList"></div>
@@ -244,15 +217,15 @@
 
     <section>
       <div class="section-header">
-        <h2 style="color: #ff0000; text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);">SUP LEADER</h2>
-        <span class="badge-count" id="supLeaderCount" style="background: #ff0000; color: #fff;">0</span>
+        <h2 style="color: #ff0000; text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);">SUP LEADER</h2>
+        <span class="badge-count" id="supLeaderCount">0</span>
       </div>
       <div class="list-grid" id="supLeaderList"></div>
     </section>
 
     <section>
       <div class="section-header">
-        <h2 style="color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.3);">MEMBER</h2>
+        <h2 style="color: #ffffff;">MEMBER</h2>
         <span class="badge-count" id="memberCount" style="background: #ffffff;">0</span>
       </div>
       <div class="list-grid" id="memberList"></div>
