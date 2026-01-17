@@ -38,7 +38,7 @@
   },
   {
     "name": "PANDA",
-    "permission": "leader",
+    "permission": "sup-leader",
     "image": ""
   },
   {
@@ -111,12 +111,9 @@
     "facebook": "https://www.facebook.com/lukchin.cry",
     "permission": "member",
     "image": ""
-  },
-  {
-  "name": "KEN",
-  "permission": "sup-leader"
-  }  
+  }
 ]
+
 
 
 
