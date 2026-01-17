@@ -163,9 +163,9 @@
     /* Icon Styles */
     .crown-icon { font-size: 1.4rem; filter: drop-shadow(0 0 8px rgba(255,255,255,0.5)); }
     
-    .gold { color: #ffd700; animation: floatIcon 2s ease-in-out infinite; } /* ทอง */
-    .silver { color: #e0e0e0; animation: floatIcon 3s ease-in-out infinite; } /* เงิน */
-    .bronze { color: #cd7f32; } /* ทองแดง (สำหรับ Member) */
+    .gold { color: #ffd700; animation: floatIcon 2s ease-in-out infinite; } 
+    .silver { color: #e0e0e0; animation: floatIcon 3s ease-in-out infinite; } 
+    .bronze { color: #cd7f32; } 
 
     @keyframes floatIcon {
       0%, 100% { transform: translateY(0); }
@@ -208,15 +208,15 @@
 
     <section>
       <div class="section-header">
-        <h2 style="color: var(--accent-color); text-shadow: 0 0 10px red;">LEADER</h2>
-        <span class="badge-count" id="leaderCount">0</span>
+        <h2 style="color: #ffd700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);">LEADER</h2>
+        <span class="badge-count" id="leaderCount" style="background: #ffd700;">0</span>
       </div>
       <div class="list-grid" id="leaderList"></div>
     </section>
 
     <section>
       <div class="section-header">
-        <h2 style="color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5);">SUP LEADER</h2>
+        <h2 style="color: #ff0000; text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);">SUP LEADER</h2>
         <span class="badge-count" id="supLeaderCount">0</span>
       </div>
       <div class="list-grid" id="supLeaderList"></div>
@@ -259,7 +259,6 @@
           } else if (rank === 'sup-leader') {
              iconHtml = `<i class='bx bxs-star crown-icon silver'></i>`; 
           } else {
-             // ไอคอนสำหรับ Member (รูปคน สีทองแดง)
              iconHtml = `<i class='bx bxs-user crown-icon bronze'></i>`; 
           }
           
