@@ -38,12 +38,12 @@
   },
   {
     "name": "PANDA",
-    "permission": "sup-leader",
+    "permission": "leader",
     "image": ""
   },
   {
     "name": "ARGO",
-    "permission": "leader",
+    "permission": "sup-leader",
     "image": ""
   },
   {
@@ -117,6 +117,7 @@
   "permission": "sup-leader"
   }  
 ]
+
 
 
 
