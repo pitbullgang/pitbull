@@ -21,14 +21,16 @@
         overflow-y: auto !important;
         height: auto !important;
         background-color: #000;
+        min-height: 100vh; /* เพิ่ม: ให้มั่นใจว่าสูงเต็มจอ */
     }
 
     .container {
       width: 90%;
       max-width: 1200px;
-      margin: 40px auto 100px;
+      margin: 40px auto 0; /* แก้: ลบ margin ล่างออกเพื่อให้ footer จัดการแทน */
       position: relative;
       z-index: 2;
+      padding-bottom: 20px;
     }
 
     /* ปุ่ม Back */
@@ -99,7 +101,7 @@
       margin-bottom: 30px;
       border-bottom: 2px solid #333;
       padding-bottom: 10px;
-      margin-top: 40px; /* เพิ่มระยะห่างแต่ละหัวข้อ */
+      margin-top: 40px; 
     }
     .section-header h2 {
       font-family: 'Black Ops One', cursive;
@@ -161,14 +163,25 @@
     /* Icon Styles */
     .crown-icon { font-size: 1.4rem; filter: drop-shadow(0 0 8px rgba(255,255,255,0.5)); }
     .gold { color: #ffd700; animation: floatIcon 2s ease-in-out infinite; }
-    .silver { color: #e0e0e0; animation: floatIcon 3s ease-in-out infinite; } /* สีเงินสำหรับ Sup Leader */
+    .silver { color: #e0e0e0; animation: floatIcon 3s ease-in-out infinite; } 
 
     @keyframes floatIcon {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
 
-    footer { text-align: center; margin-top: 50px; color: rgba(255,255,255,0.3); letter-spacing: 2px; }
+    /* --- แก้ไข FOOTER (สำคัญมาก) --- */
+    footer { 
+        position: relative !important; /* บังคับให้ยกเลิก absolute จากไฟล์หลัก */
+        bottom: auto !important;
+        width: 100%;
+        text-align: center; 
+        margin-top: 80px;   
+        padding-bottom: 50px; 
+        color: rgba(255,255,255,0.3); 
+        letter-spacing: 2px;
+        clear: both;
+    }
   </style>
 </head>
 <body>
@@ -226,38 +239,33 @@
         const supLeaderList = document.getElementById("supLeaderList");
         const memberList = document.getElementById("memberList");
 
-        // กรองข้อมูล (สำคัญ: ในไฟล์ json ต้องแก้ permission เป็น "sup-leader" สำหรับรองหัวหน้า)
         const leaders = data.filter(p => p.permission === "leader");
         const supLeaders = data.filter(p => p.permission === "sup-leader");
         const members = data.filter(p => p.permission === "member");
 
-        // อัปเดตตัวเลข
         document.getElementById("leaderCount").innerText = leaders.length;
         document.getElementById("supLeaderCount").innerText = supLeaders.length;
         document.getElementById("memberCount").innerText = members.length;
 
-        // ฟังก์ชั่นสร้างการ์ด (เพิ่ม rank เพื่อเลือกไอคอน)
         function createNameCard(person, rank="member") {
           const div = document.createElement("div");
           div.className = "name-card";
           
           let iconHtml = '';
           if (rank === 'leader') {
-             iconHtml = `<i class='bx bxs-crown crown-icon gold'></i>`; // มงกุฎทอง
+             iconHtml = `<i class='bx bxs-crown crown-icon gold'></i>`; 
           } else if (rank === 'sup-leader') {
-             iconHtml = `<i class='bx bxs-star crown-icon silver'></i>`; // ดาวเงิน
+             iconHtml = `<i class='bx bxs-star crown-icon silver'></i>`; 
           }
           
           div.innerHTML = `<h3>${iconHtml} ${person.name}</h3>`;
           return div;
         }
 
-        // วนลูปสร้างการ์ด
         leaders.forEach(p => leaderList.appendChild(createNameCard(p, 'leader')));
         supLeaders.forEach(p => supLeaderList.appendChild(createNameCard(p, 'sup-leader')));
         members.forEach(p => memberList.appendChild(createNameCard(p, 'member')));
 
-        // ระบบค้นหา
         document.getElementById("searchInput").addEventListener("input", e => {
           const val = e.target.value.toLowerCase();
           document.querySelectorAll(".name-card").forEach(card => {
