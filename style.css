@@ -1,38 +1,166 @@
-<body>
+/* =========================================
+   PITBULL GANG STYLE (FIXED LAYOUT)
+   ========================================= */
 
-    <div id="loading-screen">
-        <div class="loader"></div>
-    </div>
+:root {
+  --font: 'Kanit', sans-serif;
+  --text-color: #ffffff;
+  --accent-color: #ff4d4d;
+  --circle-color: rgba(255, 255, 255, 0.1);
+}
 
-    <div class="main-container">
-        
-        <img src="pitbullgang.png" alt="Logo" class="logo-img">
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        <div class="button-group">
-            <button>
-                PERSON LIST
-            </button>
-            
-            <button>
-                EXPERIENCE
-            </button>
-            
-            <button>
-                MUSIC LIST
-            </button>
-        </div>
+/* Main Layout */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--font);
+  color: var(--text-color);
+  background-color: #000;
 
-    </div>
+  /* --- แก้ไข: เหลือแค่รูปพื้นหลังกำแพงกับเงา (เอาโลโก้ออก) --- */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), /* เงาดำเข้มขึ้นนิดนึงเพื่อให้อ่านง่าย */
+    url('pitbull.png'); /* รูปพื้นหลังกำแพง */
 
-    <footer>
-        © DESIGNED BY KEN.
-    </footer>
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  /* จัด layout ให้ทุกอย่างอยู่กลางจอเสมอ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    <script>
-        window.onload = function() {
-            setTimeout(() => {
-                document.getElementById('loading-screen').classList.add('hidden');
-            }, 1000);
-        }
-    </script>
-</body>
+/* แสงฟุ้งด้านล่าง */
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 300px;
+  background: radial-gradient(circle at center top, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+  filter: blur(80px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* =========================================
+   CONTAINER & LOGO (ส่วนที่เพิ่มใหม่)
+   ========================================= */
+
+/* กล่องรวมเนื้อหาทั้งหมด (โลโก้ + ปุ่ม) */
+.main-container {
+  display: flex;
+  flex-direction: column; /* เรียงลงแนวตั้ง */
+  align-items: center;    /* จัดกึ่งกลาง */
+  justify-content: center;
+  gap: 30px; /* ระยะห่างระหว่างโลโก้กับปุ่ม */
+  z-index: 10;
+  width: 100%;
+  padding: 20px;
+}
+
+/* ปรับแต่งโลโก้ */
+.logo-img {
+  width: 550px;       /* ขนาดโลโก้ */
+  max-width: 90vw;    /* ถ้าจอมือถือเล็กกว่า 550px ให้ย่อตามจอ */
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); /* เงาหลังโลโก้ */
+  animation: floatLogo 3s ease-in-out infinite; /* (Optional) ให้โลโก้ลอยไปมา */
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* กลุ่มปุ่มกด */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* ระยะห่างระหว่างปุ่มแต่ละปุ่ม */
+  width: 100%;
+}
+
+/* =========================================
+   BUTTON STYLES
+   ========================================= */
+button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+  padding: 15px 0;
+  font-family: var(--font);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+button:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 30px rgba(255, 77, 77, 0.5);
+  transform: translateY(-3px) scale(1.02);
+}
+
+button svg {
+  width: 22px; height: 22px; stroke: #fff;
+  transition: transform 0.3s ease;
+}
+button:hover svg { transform: translateX(5px) scale(1.1); }
+
+/* =========================================
+   LOADING & EFFECTS (คงเดิม)
+   ========================================= */
+#loading-screen {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #000;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  z-index: 999;
+  transition: opacity 1s ease;
+}
+#loading-screen.hidden { opacity: 0; pointer-events: none; }
+
+.loader {
+  border: 4px solid rgba(255,255,255,0.1);
+  border-top: 4px solid var(--accent-color);
+  border-radius: 50%; width: 60px; height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+footer {
+  position: fixed; bottom: 20px; left: 0; width: 100%;
+  text-align: center; color: rgba(255,255,255,0.4);
+  font-size: 0.8rem; z-index: 5; pointer-events: none;
+}
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
