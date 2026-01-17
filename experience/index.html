@@ -4,162 +4,275 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Experience | Pitbull Gang</title>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700&display=swap" rel="stylesheet" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   
   <link rel="stylesheet" href="../style.css" />
-    
+  
   <style>
-    /* ตั้งค่าพื้นฐาน */
+    /* --- ตั้งค่าเฉพาะหน้านี้ --- */
+    :root {
+      --accent-color: #ff0000;
+      --font-header: 'Black Ops One', cursive;
+      --font-body: 'Kanit', sans-serif;
+    }
+
     html, body {
         overflow-y: auto !important;
         height: auto !important;
+        background-color: #000;
+        min-height: 100vh;
     }
 
-    /* CSS เฉพาะหน้านี้ (Timeline) */
+    /* Container */
     .container {
       width: 90%;
-      max-width: 800px;
-      margin: 40px auto 100px;
+      max-width: 900px;
+      margin: 40px auto 0;
       position: relative;
+      z-index: 2;
+      padding-bottom: 20px;
     }
 
-    /* ปุ่มย้อนกลับ */
+    /* ปุ่ม Back */
     .back-btn {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
       color: #fff;
       text-decoration: none;
       font-size: 1.1rem;
-      margin-bottom: 20px;
-      padding: 8px 15px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 30px;
+      font-family: var(--font-header);
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+      padding: 12px 25px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
       transition: all 0.3s ease;
     }
     .back-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      padding-left: 10px;
+      background: rgba(255, 0, 0, 0.2);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 15px var(--accent-color);
+      transform: translateX(-5px);
     }
 
-    /* เส้น Timeline ตรงกลาง */
+    /* หัวข้อหน้า */
+    .page-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .page-title h2 {
+      font-family: var(--font-header);
+      font-size: 4rem;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 4px 4px 0px #000, 0 0 25px rgba(255, 0, 0, 0.6);
+      letter-spacing: 3px;
+      margin: 0;
+    }
+    .page-title p {
+      font-family: var(--font-body);
+      color: #ccc;
+      letter-spacing: 1px;
+      margin-top: 5px;
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+
+    /* --- TIMELINE DESIGN --- */
     .timeline {
       position: relative;
       padding: 20px 0;
     }
+    
+    /* เส้นแกนกลาง */
     .timeline::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 20px;
+      left: 20px; /* มือถือ: ชิดซ้าย */
       height: 100%;
       width: 4px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 2px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); /* เรืองแสงนิดๆ */
     }
 
-    /* กล่องข้อความ */
     .timeline-item {
       position: relative;
-      margin-bottom: 40px;
-      padding-left: 50px;
+      margin-bottom: 50px;
+      padding-left: 60px; /* เว้นที่ให้จุดและเส้น */
     }
 
-    /* จุดกลม */
+    /* จุดกลม (Dot) */
     .timeline-dot {
       position: absolute;
-      left: 11px;
-      top: 5px;
+      left: 11px; /* กึ่งกลางเส้น */
+      top: 0;
       width: 22px;
       height: 22px;
-      background: var(--accent, #ff4d4d);
-      border: 4px solid #1a1a1a;
+      background: var(--accent-color);
+      border: 4px solid #000;
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+      box-shadow: 0 0 15px var(--accent-color);
       z-index: 2;
-    }
-
-    /* กล่องเนื้อหา */
-    .timeline-content {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease;
     }
-    .timeline-content:hover {
+
+    /* กล่องข้อความ (Card) */
+    .timeline-content {
+      position: relative;
+      background: rgba(15, 15, 15, 0.9);
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      clip-path: polygon(
+        20px 0, 100% 0, 
+        100% calc(100% - 20px), 
+        calc(100% - 20px) 100%, 
+        0 100%, 
+        0 20px
+      );
+      transition: all 0.3s ease;
+    }
+    
+    /* เส้นตกแต่งมุมการ์ด */
+    .timeline-content::before, .timeline-content::after {
+      content: ''; position: absolute; width: 20px; height: 4px; background: var(--accent-color); transition: 0.3s;
+    }
+    .timeline-content::before { top: 0; left: 0; }
+    .timeline-content::after { bottom: 0; right: 0; }
+
+    /* Hover Effect */
+    .timeline-item:hover .timeline-content {
       transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(40, 0, 0, 0.3);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+    }
+    .timeline-item:hover .timeline-content::before, 
+    .timeline-item:hover .timeline-content::after {
+      width: 100%; height: 100%; background: transparent; border: 2px solid var(--accent-color);
+    }
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.3);
+      background: #fff;
     }
 
+    /* วันที่ */
     .date {
-      font-size: 0.9rem;
-      color: var(--accent, #ff4d4d);
-      font-weight: bold;
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    .timeline-content h3 {
+      display: inline-block;
+      font-family: var(--font-header);
       font-size: 1.4rem;
+      color: var(--accent-color);
       margin-bottom: 10px;
-      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 5px;
+      width: 100%;
     }
 
-    /* List */
+    /* หัวข้อ Story */
+    .timeline-content h3 {
+      font-family: var(--font-header);
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    /* รายการ (List) */
     .timeline-content ul {
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
     .timeline-content li {
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.8);
-        line-height: 1.8;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-        padding: 4px 0;
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      color: #ddd;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .timeline-content li::before {
+      content: '>';
+      color: var(--accent-color);
+      font-family: var(--font-header);
+      font-weight: bold;
     }
     .timeline-content li:last-child {
-        border-bottom: none;
+      border-bottom: none;
     }
 
-    /* Responsive */
+    /* --- Responsive (PC) --- */
     @media (min-width: 768px) {
       .timeline::before { left: 50%; transform: translateX(-50%); }
+      
       .timeline-item { width: 50%; margin-left: 0; padding-left: 0; }
       
+      /* กล่องซ้าย */
       .timeline-item:nth-child(odd) { 
-        padding-right: 40px; 
-        text-align: right;
+        padding-right: 50px; 
+        text-align: right; 
       }
+      .timeline-item:nth-child(odd) .timeline-content::before { left: auto; right: 0; } /* ย้ายมุมตัดไปขวา */
+      .timeline-item:nth-child(odd) .timeline-content::after { right: auto; left: 0; }
+      
+      /* กล่องขวา */
       .timeline-item:nth-child(even) { 
         margin-left: 50%; 
-        padding-left: 40px; 
+        padding-left: 50px; 
+        text-align: left;
       }
 
+      /* จัดจุด (Dot) */
       .timeline-item:nth-child(odd) .timeline-dot { left: auto; right: -11px; }
       .timeline-item:nth-child(even) .timeline-dot { left: -11px; }
+      
+      /* จัด list ให้ชิดขวาสำหรับกล่องซ้าย */
+      .timeline-item:nth-child(odd) .timeline-content ul li {
+        justify-content: flex-end; /* ชิดขวา */
+        flex-direction: row-reverse; /* สลับลูกศรไปอยู่หลัง */
+      }
+    }
+
+    /* Footer Fix */
+    footer { 
+        position: relative !important;
+        bottom: auto !important;
+        width: 100%;
+        text-align: center; 
+        margin-top: 80px;   
+        padding-bottom: 50px; 
+        color: rgba(255,255,255,0.4); 
+        letter-spacing: 2px;
+        font-family: var(--font-header);
+        font-size: 0.9rem;
+        clear: both;
     }
   </style>
 </head>
 <body>
 
-  <video autoplay muted loop playsinline id="bg-video">
+  <video autoplay muted loop playsinline id="bg-video" style="position: fixed; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index: -2;">
     <source src="../PITBULL.mp4" type="video/mp4">
   </video>
-
-  <div style="position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:-1;"></div>
+  <div style="position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:-1;"></div>
 
   <div class="container">
+    
     <a href="../" class="back-btn">
-      <i class='bx bx-arrow-back'></i> Back to Home
+      <i class='bx bx-chevrons-left'></i> Back to Home
     </a>
 
-    <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px;">Experience</h2>
-        <p style="color: #ccc;">เส้นทางและประสบการณ์ของพวกเรา</p>
+    <div class="page-title">
+      <h2>Experience</h2>
+      <p>เส้นทางและประสบการณ์ของพวกเรา</p>
     </div>
 
     <div class="timeline">
@@ -168,8 +281,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <span class="date">DECEMBER 2025</span>
-          <h3>Story</h3>
-          <ul style="list-style: none; padding-left: 0;">
+          <h3>STORY</h3>
+          <ul>
             <li>PITBULL 5 : 0 ETERNITY</li>
             <li>PITBULL 7 : 1 OChundred</li>
           </ul>
@@ -180,8 +293,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <span class="date">NOVEMBER 2025</span>
-          <h3>Story</h3>
-          <ul style="list-style: none; padding-left: 0;">
+          <h3>STORY</h3>
+          <ul>
             <li>PITBULL 5 : 1 Be Bare Bear</li>
             <li>PITBULL 5 : 0 ONLAWENG</li>
             <li>PITBULL 8 : 0 SUCKSEED</li>
@@ -193,8 +306,8 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <span class="date">OCTOBER 2025</span>
-          <h3>Story</h3>
-          <ul style="list-style: none; padding-left: 0;">
+          <h3>STORY</h3>
+          <ul>
             <li>PITBULL 5 : 2 REZET1</li>
             <li>PITBULL 5 : 0 ATHENS</li>
             <li>PITBULL 5 : 0 Gilded Fangs</li>
@@ -215,20 +328,18 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <span class="date">SEPTEMBER 2025</span>
-          <h3>Story</h3>
-          <ul style="list-style: none; padding-left: 0;">
+          <h3>STORY</h3>
+          <ul>
             <li>PITBULL 2 : 5 XD GANG</li>
             <li>PITBULL 4 : 5 FLOYEN</li>
           </ul>
         </div>
       </div>
       
-    </div>
+    </div> <footer>
+        <p>© DESIGNED BY KEN.</p>
+    </footer>
   </div>
-
-  <footer>
-    <p>© DESIGNED BY KEN.</p>
-  </footer>
 
   <script src="../script.js"></script>
 </body>
