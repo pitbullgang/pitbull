@@ -1,41 +1,46 @@
+/* =========================================
+   PITBULL GANG STYLE (FINAL VERSION)
+   ========================================= */
+
 :root {
-  --gradient-start: #000000;
-  --gradient-end: #1a1a1a;
-  --circle-color: rgba(255, 255, 255, 0.1);
-  --button-gradient-start: #000000;
-  --button-gradient-end: #000000;
-  --button-text-color: #ffffff;
   --font: 'Kanit', sans-serif;
   --text-color: #ffffff;
   --accent-color: #ff4d4d; /* สีแดง Pitbull */
+  --circle-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 🌞 Light Theme Variables */
-.light-theme {
-  --gradient-start: #f0f0f0;
-  --gradient-end: #d9d9d9;
-  --circle-color: rgba(0, 0, 0, 0.05);
-  --button-gradient-start: #ffffff;
-  --button-gradient-end: #e0e0e0;
-  --button-text-color: #000000;
-  --text-color: #000000;
-}
-
-/* Reset */
+/* Reset ค่าพื้นฐาน */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* Main Layout */
 html, body {
   height: 100%;
   width: 100%;
-  overflow: hidden; /* ล็อคหน้าจอไม่ให้เลื่อน (สำหรับหน้าแรก) */
+  overflow: hidden; /* ล็อคหน้าจอ */
   font-family: var(--font);
   color: var(--text-color);
   position: relative;
-  background-color: transparent !important; 
+  background-color: #000; 
 }
 
-/* Light Glow Bottom */
+/* =========================================
+   VIDEO BACKGROUND
+   ========================================= */
+#bg-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: -100;
+  object-fit: cover;
+  filter: brightness(0.4); /* ปรับให้วิดีโอมืดลง 60% เพื่อให้เห็นปุ่มชัด */
+}
+
+/* Light Glow Bottom (แสงฟุ้งด้านล่าง) */
 body::after {
   content: "";
   position: fixed;
@@ -43,44 +48,15 @@ body::after {
   transform: translateX(-50%);
   width: 100%;
   height: 300px;
-  background: radial-gradient(circle at center top, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle at center top, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
   filter: blur(80px);
   z-index: 1;
   pointer-events: none;
 }
 
-/* Theme Toggle */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 25px;
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50px;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-  transition: all 0.3s ease;
-}
-.theme-toggle:hover {
-  background: rgba(255,255,255,0.15);
-  transform: scale(1.05);
-}
-.theme-toggle svg {
-  color: var(--text-color);
-  position: absolute;
-  transition: opacity 0.3s ease;
-}
-#sunIcon { opacity: 0; }
-.light-theme #moonIcon { opacity: 0; }
-.light-theme #sunIcon { opacity: 1; }
-
-/* Loading screen */
+/* =========================================
+   LOADING SCREEN
+   ========================================= */
 #loading-screen {
   position: fixed;
   width: 100%;
@@ -97,7 +73,7 @@ body::after {
 
 .loader {
   border: 4px solid rgba(255,255,255,0.1);
-  border-top: 4px solid #888;
+  border-top: 4px solid var(--accent-color);
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -106,47 +82,40 @@ body::after {
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
 /* =========================================
-   🔥 ส่วนที่อัปเกรดใหม่: Design Cinematic
+   MAIN CONTENT (LOGO & BUTTONS)
    ========================================= */
 
-/* จัดกึ่งกลาง */
+/* จัดกึ่งกลางหน้าจอ */
 .center-container {
   position: absolute;
   top: 50%; 
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 5;
+  z-index: 10;
   width: 100%;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* หัวข้อ Pitbull Gang (ใหญ่ + เงาแดง) */
-.title h2 {
-  font-size: 4.5rem;
-  font-weight: 900;
-  font-style: italic;
-  text-transform: uppercase;
-  color: #fff;
-  line-height: 1.1;
-  letter-spacing: -2px;
-  margin-bottom: 5px;
-  
-  /* เอฟเฟกต์นีออนสีแดง */
-  text-shadow: 0 0 10px rgba(255, 77, 77, 0.8),
-               0 0 40px rgba(255, 77, 77, 0.4);
+/* กล่องใส่โลโก้ */
+.title-logo {
+  margin-bottom: 30px; /* ระยะห่างจากปุ่ม */
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-/* หัวข้อรอง (ตัวเล็กห่างๆ) */
-.title p {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--accent-color);
-  text-transform: uppercase;
-  letter-spacing: 8px; /* เว้นระยะห่าง */
-  margin-bottom: 40px;
-  text-shadow: 0 0 10px rgba(0,0,0,0.8);
-  opacity: 0.9;
+/* ปรับแต่งรูปโลโก้ */
+.main-logo {
+  width: 100%;
+  max-width: 550px; /* ขนาดโลโก้ (ปรับเลขนี้ถ้าอยากได้ใหญ่/เล็ก) */
+  height: auto;
+  /* เงาสีแดงเรืองแสงหลังโลโก้ */
+  filter: drop-shadow(0 0 25px rgba(255, 77, 77, 0.5)); 
+  animation: floatLogo 3s ease-in-out infinite; /* เอฟเฟกต์ลอย */
 }
 
 /* ปุ่มกดสไตล์ Dark Glass */
@@ -157,107 +126,95 @@ button {
   justify-content: center;
   gap: 12px;
   
-  width: 240px; /* ความกว้างคงที่ */
-  padding: 14px 0;
-  margin: 0; /* ลบ margin เดิมออก */
+  width: 100%;
+  max-width: 300px; /* ความกว้างปุ่มสูงสุด */
+  padding: 15px 0;
+  margin: 0;
   
   font-family: var(--font);
   font-size: 1.1rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   
-  background: rgba(0, 0, 0, 0.6); /* พื้นหลังดำโปร่งใส */
+  background: rgba(0, 0, 0, 0.7); /* พื้นหลังดำโปร่งใส */
   backdrop-filter: blur(10px);
   
-  border: 1px solid rgba(255, 255, 255, 0.15); /* ขอบขาวจางๆ */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ขอบขาวจางๆ */
   color: #fff;
-  border-radius: 4px;
+  border-radius: 50px; /* ปุ่มมน */
   
   cursor: pointer;
   overflow: hidden;
   transition: all 0.4s ease;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 
 /* เอฟเฟกต์ตอนชี้ปุ่ม */
 button:hover {
-  background: var(--accent-color); /* สีแดง */
+  background: var(--accent-color); /* เปลี่ยนเป็นสีแดง */
   border-color: var(--accent-color);
-  box-shadow: 0 0 30px rgba(255, 77, 77, 0.6); /* เรืองแสง */
-  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 40px rgba(255, 77, 77, 0.6); /* เรืองแสง */
+  transform: translateY(-5px) scale(1.05);
+  color: #fff;
 }
 
 button svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   stroke: #fff;
   transition: transform 0.3s ease;
 }
 
 button:hover svg {
-  transform: translateX(5px);
+  transform: translateX(5px) scale(1.2);
 }
 
-/* ========================================= */
+/* =========================================
+   ANIMATIONS & EFFECTS
+   ========================================= */
 
-/* Circle Follow */
+/* โลโก้ลอยขึ้นลง */
+@keyframes floatLogo {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* เมาส์วงกลมตาม (Circle Follow) */
 #circle {
   position: fixed;
   top: 0; left: 0;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background: var(--circle-color);
   pointer-events: none;
-  filter: blur(80px);
+  filter: blur(60px);
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 5;
 }
 
 /* Footer */
 footer {
   position: fixed;
-  bottom: 15px;
+  bottom: 20px;
   left: 0;
   width: 100%;
   text-align: center;
-  color: rgba(255,255,255,0.5);
-  font-size: 0.9rem;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.8rem;
   z-index: 5;
   pointer-events: none;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .title h2 { font-size: 2.5rem; }
-  .title p { letter-spacing: 4px; font-size: 0.8rem; }
-  button { width: 100%; max-width: 280px; }
-  #circle { width: 180px; height: 180px; filter: blur(50px); }
-}
-
-/* Video Background */
-#bg-video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  z-index: -100;
-  object-fit: cover;
+  letter-spacing: 1px;
 }
 
 /* =========================================
-   ZONE: SYSTEM SECURITY (ระบบป้องกัน)
+   SYSTEM SECURITY
    ========================================= */
-
-/* ห้ามคลุมดำก๊อปข้อความทั้งเว็บ */
 body {
-    -webkit-user-select: none; /* Chrome/Safari */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* IE10+ */
-    user-select: none;         /* Standard */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
