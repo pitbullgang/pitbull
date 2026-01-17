@@ -3,52 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pitbull Gang</title>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;900&display=swap" rel="stylesheet" />
+  <title>Pitbull Gang - Official</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div id="loading-screen">
     <div class="loader"></div>
-    <p style="margin-top: 15px; letter-spacing: 2px;">LOADING...</p>
   </div>
 
-  <div id="circle"></div>
+  <div class="logo-container">
+    <img src="pitbullgang.png" alt="PITBULL GANG" class="logo-img">
+  </div>
 
-  <div class="main-container">
+  <div class="menu-grid">
     
-    <img src="pitbullgang.png" alt="Pitbull Gang Logo" class="logo-img">
-    
-    <div class="button-group">
-        
-        <button onclick="window.location.href='person/'">
-          <span>Person List</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-        </button>
+    <a href="person/" class="gang-btn">
+      <div class="gang-btn-content">
+        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <span class="btn-title">PERSON</span>
+      </div>
+    </a>
 
-        <button onclick="window.location.href='experience/'">
-          <span>Experience</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-        </button>
+    <a href="experience/" class="gang-btn">
+      <div class="gang-btn-content">
+        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <span class="btn-title">EXPERIENCE</span>
+      </div>
+    </a>
 
-        <button onclick="window.location.href='music/'">
-          <span>Music List</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 18V5l12-2v13"></path>
-            <circle cx="6" cy="18" r="3"></circle>
-            <circle cx="18" cy="16" r="3"></circle>
-          </svg>
-        </button>
+    <a href="music/" class="gang-btn">
+      <div class="gang-btn-content">
+        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></svg>
+        <span class="btn-title">MUSIC LIST</span>
+      </div>
+    </a>
 
-    </div> </div> <footer>
-    <p>© DESIGNED BY KEN.</p>
+  </div>
+
+  <footer>
+    © DESIGNED BY KEN.
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('loading-screen').style.opacity = '0';
+        setTimeout(() => {
+           document.getElementById('loading-screen').style.display = 'none';
+        }, 500);
+      }, 800);
+    }
+  </script>
+
 </body>
 </html>
