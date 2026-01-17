@@ -1,5 +1,5 @@
 /* =========================================
-   PITBULL GANG STYLE (FINAL VERSION)
+   PITBULL GANG STYLE (FINAL VERSION - IMAGE BG)
    ========================================= */
 
 :root {
@@ -20,25 +20,18 @@ html, body {
   font-family: var(--font);
   color: var(--text-color);
   position: relative;
-  background-color: #000; 
+
+  /* --- ส่วนที่แก้ไข: ตั้งค่าพื้นหลังเป็นรูป pitbull.png --- */
+  background-color: #000;
+  /* บรรทัดนี้คือการใส่สีดำโปร่งแสงทับรูป (0.6 คือความมืด 60%) ตามด้วยรูป */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('pitbull.png');
+  background-size: cover;       /* ขยายรูปให้เต็มจอ */
+  background-position: center;  /* จัดกึ่งกลาง */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* รูปนิ่งเวลาเลื่อน */
 }
 
-/* =========================================
-   VIDEO BACKGROUND
-   ========================================= */
-#bg-video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  z-index: -100;
-  object-fit: cover;
-  filter: brightness(0.4); /* ปรับให้วิดีโอมืดลง 60% เพื่อให้เห็นปุ่มชัด */
-}
+/* --- ลบส่วน #bg-video ออกไปเลย เพราะใช้ background ใน body แทนแล้ว --- */
 
 /* Light Glow Bottom (แสงฟุ้งด้านล่าง) */
 body::after {
@@ -111,7 +104,7 @@ body::after {
 /* ปรับแต่งรูปโลโก้ */
 .main-logo {
   width: 100%;
-  max-width: 550px; /* ขนาดโลโก้ (ปรับเลขนี้ถ้าอยากได้ใหญ่/เล็ก) */
+  max-width: 550px; /* ขนาดโลโก้ */
   height: auto;
   /* เงาสีแดงเรืองแสงหลังโลโก้ */
   filter: drop-shadow(0 0 25px rgba(255, 77, 77, 0.5)); 
