@@ -21,8 +21,15 @@
     html, body {
         overflow-y: auto !important;
         height: auto !important;
-        background-color: #000;
         min-height: 100vh;
+        
+        /* --- แก้ไขพื้นหลัง: ใช้รูปภาพแทนวิดีโอ --- */
+        background-color: #000;
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../pitbull.png'); /* ใช้รูปเดียวกับหน้าแรก */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* ให้พื้นหลังนิ่งเวลาเลื่อน */
+        background-repeat: no-repeat;
     }
 
     /* Container */
@@ -136,7 +143,7 @@
         0 20px
       );
       transition: all 0.3s ease;
-      text-align: left; /* บังคับชิดซ้ายเสมอเพื่อความสวยงามของ List */
+      text-align: left;
     }
     
     /* เส้นตกแต่งมุมการ์ด */
@@ -199,7 +206,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      justify-content: flex-start; /* จัดลูกศรอยู่หน้า */
+      justify-content: flex-start;
     }
     .timeline-content li::before {
       content: '>';
@@ -224,17 +231,12 @@
         text-align: right; 
       }
       .timeline-item:nth-child(odd) .timeline-content {
-          text-align: right; /* วันที่และหัวข้อชิดขวา */
+          text-align: right; 
       }
-      /* แต่ List ขอให้ชิดซ้ายเหมือนเดิมจะได้อ่านง่าย */
       .timeline-item:nth-child(odd) .timeline-content ul li {
-          justify-content: flex-end; /* ให้ List ในกล่องซ้ายชิดขวาตามกล่อง */
-          flex-direction: row; /* คงลูกศรไว้ด้านหน้าข้อความเหมือนเดิม (> Text) */
+          justify-content: flex-end; 
+          flex-direction: row; 
       }
-      /* แก้ไข: ย้ายลูกศรไปอยู่หลังข้อความเฉพาะกล่องซ้าย เพื่อความสวยงามแบบสมมาตร หรือจะคงไว้ข้างหน้าก็ได้ */
-      /* ถ้าอยากให้ลูกศรอยู่หน้าเสมอ (> Text) ให้ใช้ code ด้านบน แต่ถ้าอยากให้ Text < ให้ใช้ row-reverse */
-      /* ตามที่คุณขอ "เอาลูกศรมาอยู่ข้างหน้า" ผมจะคง row ปกติไว้ครับ */
-      
 
       .timeline-item:nth-child(odd) .timeline-content::before { left: auto; right: 0; }
       .timeline-item:nth-child(odd) .timeline-content::after { right: auto; left: 0; }
@@ -269,11 +271,6 @@
 </head>
 <body>
 
-  <video autoplay muted loop playsinline id="bg-video" style="position: fixed; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index: -2;">
-    <source src="../PITBULL.mp4" type="video/mp4">
-  </video>
-  <div style="position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:-1;"></div>
-
   <div class="container">
     
     <a href="../" class="back-btn">
@@ -282,6 +279,7 @@
 
     <div class="page-title">
       <h2>Experience</h2>
+      <p>เส้นทางและประสบการณ์ของพวกเรา</p>
     </div>
 
     <div class="timeline">
