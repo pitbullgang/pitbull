@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* --- Styles สำหรับโลโก้สลับแบบ 3D มีมิติ --- */
+    
     .logo-container {
       display: grid;
       place-items: center;
@@ -23,48 +23,48 @@
       width: 550px;
       max-width: 90%;
       object-fit: contain;
-      /* เริ่มต้น: ซ่อนไว้ในฉากหลังลึกๆ */
+      
       opacity: 0;
       transform: translateZ(-1000px) scale(0.5) rotateX(30deg);
       filter: blur(20px) brightness(0);
-      /* ป้องกันการเห็นด้านหลังภาพเวลาหมุน */
+      
       backface-visibility: hidden;
     }
 
-    /* ใช้ Animation เดียวกัน แต่เริ่มคนละเวลา */
+    
     .logo-1 {
-      /* ใช้ cubic-bezier เพื่อให้จังหวะพุ่งเข้า-ออกดูหนักแน่น */
+      
       animation: dramatic3D 8s infinite cubic-bezier(0.7, 0, 0.3, 1);
     }
     .logo-2 {
       animation: dramatic3D 8s infinite cubic-bezier(0.7, 0, 0.3, 1);
-      /* เริ่มช้ากว่าตัวแรกครึ่งรอบ (4 วินาที) */
+      
       animation-delay: 4s; 
     }
 
-    /* คีย์เฟรมสำหรับเอฟเฟกต์ 3D พุ่งเข้า-ออก */
+    
     @keyframes dramatic3D {
       0%, 5% {
-        /* สถานะเริ่มต้น: อยู่ลึกในฉากหลัง เบลอ และมืด */
+        
         opacity: 0;
         transform: translateZ(-1000px) scale(0.5) rotateX(30deg);
         filter: blur(20px) brightness(0);
       }
       15%, 45% {
-        /* สถานะโชว์: พุ่งมาอยู่ด้านหน้า ชัดเจน สว่าง */
+        
         opacity: 1;
         transform: translateZ(0) scale(1) rotateX(0deg);
         filter: blur(0) brightness(1);
       }
       55%, 100% {
-        /* สถานะจบ: พุ่งกลับไปข้างหลัง มืดและเบลออีกครั้ง */
+        
         opacity: 0;
         transform: translateZ(-1000px) scale(0.5) rotateX(-30deg);
         filter: blur(20px) brightness(0);
       }
     }
 
-    /* --- Styles สำหรับฝนตก (ใช้รูป whitepitbull.png) --- */
+    
     .pitbull-rain {
       position: fixed;
       top: -100px;
@@ -126,7 +126,7 @@
   </footer>
 
   <script>
-    // 1. Loading Screen
+    
     window.onload = () => {
       setTimeout(() => {
         document.getElementById('loading-screen').style.opacity = '0';
@@ -136,7 +136,7 @@
       }, 800);
     }
 
-    // 2. Rain Effect
+    
     function createPitbullRain() {
       const rain = document.createElement('div');
       rain.classList.add('pitbull-rain');
@@ -163,3 +163,4 @@
 
 </body>
 </html>
+
