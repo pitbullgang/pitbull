@@ -15,7 +15,7 @@ body {
   overflow: hidden;
   background-color: #000;
   
-  /* พื้นหลัง */
+  
   background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), #000), url('pitbull.png');
   background-size: cover;
   background-position: center;
@@ -28,7 +28,7 @@ body {
   font-family: var(--primary-font);
 }
 
-/* --- LOADER --- */
+
 #loading-screen {
   position: fixed; inset: 0; background: #000; z-index: 999;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -41,7 +41,7 @@ body {
 }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* --- LOGO SECTION --- */
+
 .logo-container {
   margin-bottom: 40px;
   animation: float 4s ease-in-out infinite;
@@ -59,16 +59,14 @@ body {
   50% { transform: translateY(-15px); }
 }
 
-/* =========================================
-   CYBER HUD MENU DESIGN (แบบล้ำสมัย)
-   ========================================= */
+
 .menu-grid {
   display: flex;
   gap: 25px;
   z-index: 10;
 }
 
-/* ปุ่มทรง Cyber ตัดมุม */
+
 .gang-btn {
   position: relative;
   width: 240px;
@@ -80,7 +78,7 @@ body {
   justify-content: center;
   align-items: center;
   
-  /* ตัดมุมบนซ้าย และ ล่างขวา */
+  
   clip-path: polygon(
     20px 0, 100% 0, 
     100% calc(100% - 20px), 
@@ -93,7 +91,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ขีดสีแดงตรงมุม (ตอนยังไม่ชี้) */
+
 .gang-btn::before, .gang-btn::after {
   content: '';
   position: absolute;
@@ -106,7 +104,7 @@ body {
 .gang-btn::before { top: 0; left: 0; }
 .gang-btn::after { bottom: 0; right: 0; }
 
-/* เนื้อหาในปุ่ม */
+
 .gang-btn-content {
   display: flex;
   flex-direction: column;
@@ -131,14 +129,14 @@ body {
   transition: 0.3s;
 }
 
-/* --- HOVER EFFECTS (เอฟเฟกต์ตอนชี้) --- */
+
 .gang-btn:hover {
-  background: rgba(255, 0, 0, 0.15); /* พื้นหลังแดงจางๆ */
+  background: rgba(255, 0, 0, 0.15); 
   border-color: var(--accent-color);
   text-shadow: 0 0 10px var(--accent-color);
 }
 
-/* เปลี่ยนขีดมุม ให้วิ่งเป็นกรอบรอบปุ่ม */
+
 .gang-btn:hover::before, .gang-btn:hover::after {
   width: 100%;
   height: 100%;
@@ -147,29 +145,29 @@ body {
   box-shadow: 0 0 20px var(--accent-color), inset 0 0 20px var(--accent-color);
 }
 
-/* ตัวหนังสือขยายออก */
+
 .gang-btn:hover .btn-title {
   color: var(--accent-color);
   letter-spacing: 4px;
 }
 
-/* ไอคอนหมุนและสว่างขึ้น */
+
 .gang-btn:hover .btn-icon {
   fill: #fff;
   transform: scale(1.2) rotate(10deg);
   filter: drop-shadow(0 0 5px #fff);
 }
 
-/* --- RESPONSIVE (มือถือ) --- */
+
 @media (max-width: 768px) {
   .menu-grid {
-    flex-direction: column; /* เรียงลงแนวตั้ง */
+    flex-direction: column; 
     gap: 15px;
   }
   .gang-btn {
-    width: 280px; /* กว้างขึ้นให้กดง่าย */
+    width: 280px; 
     height: 70px;
-    /* ทรงตัดมุมยังคงอยู่เพราะใช้ clip-path */
+    
   }
   .logo-img {
     width: 350px;
@@ -180,3 +178,4 @@ footer {
   position: absolute; bottom: 20px;
   color: #555; font-size: 0.8rem; letter-spacing: 2px;
 }
+
