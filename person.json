@@ -62,12 +62,6 @@
     "image": ""
   },
   {
-    "name": "MOOKROB",
-    "facebook": "https://www.facebook.com/mookorb.kl",
-    "permission": "member",
-    "image": ""
-  },
-  {
     "name": "MARCUS",
     "permission": "member",
     "image": ""
@@ -95,12 +89,6 @@
     "image": ""
   },
   {
-    "name": "JEDI",
-    "facebook": "https://www.facebook.com/lukchin.cry",
-    "permission": "member",
-    "image": ""
-  },
-  {
     "name": "MELON",
     "facebook": "https://www.facebook.com/lukchin.cry",
     "permission": "member",
@@ -113,6 +101,7 @@
     "image": ""
   }
 ]
+
 
 
 
